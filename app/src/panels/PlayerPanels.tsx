@@ -1,8 +1,10 @@
 import { css } from '@emotion/react'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
-import { StyledPlayerPanel, usePlayerId, usePlayers } from '@gamepark/react-game'
+import { PanoramaRules } from '@gamepark/panorama/PanoramaRules'
+import { StyledPlayerPanel, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
 import { createPortal } from 'react-dom'
-import { panelAnchor, panelEmGap, panelEmWidth, tableBounds, tableMargin } from '../locators/TableLayout'
+import { PanoramaLayout } from '../locators/PanoramaLayout'
+import { panelEmGap, panelEmWidth, tableMargin } from '../locators/TableLayout'
 
 /**
  * The panels are drawn on the screen, out of the table, where they stand against their owner's Panorama when the
@@ -12,10 +14,11 @@ import { panelAnchor, panelEmGap, panelEmWidth, tableBounds, tableMargin } from 
 export const PlayerPanels = () => {
   const players = usePlayers<PlayerColor>()
   const me = usePlayerId<PlayerColor>()
+  const rules = useRules<PanoramaRules>()
   const root = document.getElementById('root')
-  if (!root) return null
-  const playerIds = players.map((player) => player.id)
-  const { xMin, xMax, yMin, yMax } = tableBounds(players.length)
+  if (!root || !rules) return null
+  const layout = PanoramaLayout.of(rules, me)
+  const { xMin, xMax, yMin, yMax } = layout.tableBounds()
   const margin = tableMargin(players.length)
   const emPerCm = (100 - margin.top - margin.bottom) / (yMax - yMin)
   /** The left of the table on the screen, as a CSS length */
@@ -23,7 +26,7 @@ export const PlayerPanels = () => {
   return createPortal(
     <>
       {players.map((player) => {
-        const anchor = panelAnchor(player.id, playerIds, me)
+        const anchor = layout.panelAnchor(player.id)
         const top = margin.top + (anchor.y - yMin) * emPerCm
         const left = anchor.x !== undefined ? `calc(${tableLeft} + ${(anchor.x - xMin) * emPerCm}em)` : undefined
         return (

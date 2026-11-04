@@ -1,13 +1,19 @@
 import { css } from '@emotion/react'
-import { DevToolsHub, GameTable, usePlayers } from '@gamepark/react-game'
-import { tableBounds, tableMargin } from './locators/TableLayout'
+import { PanoramaRules } from '@gamepark/panorama/PanoramaRules'
+import { PlayerColor } from '@gamepark/panorama/PlayerColor'
+import { DevToolsHub, GameTable, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
+import { PanoramaLayout } from './locators/PanoramaLayout'
+import { tableMargin } from './locators/TableLayout'
 import { PlayerPanels } from './panels/PlayerPanels'
 
 export function GameDisplay() {
   const players = usePlayers()
+  const rules = useRules<PanoramaRules>()
+  const me = usePlayerId<PlayerColor>()
+  if (!rules) return null
   return (
     <>
-      <GameTable {...tableBounds(players.length)} margin={tableMargin(players.length)} css={process.env.NODE_ENV === 'development' && tableBorder}>
+      <GameTable {...PanoramaLayout.of(rules, me).tableBounds()} margin={tableMargin(players.length)} css={process.env.NODE_ENV === 'development' && tableBorder}>
         <PlayerPanels />
         {process.env.NODE_ENV === 'development' && <DevToolsHub fabBottom="calc(5em)" />}
       </GameTable>

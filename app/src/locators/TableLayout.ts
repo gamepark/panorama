@@ -17,7 +17,7 @@ import { XYCoordinates } from '@gamepark/rules-api'
 // ------------------------------------------------------------------ component sizes
 
 /** The images carry a baked shadow: 0.2 cm on every side for cardboard, 0.24 cm for wood. Sizes include it. */
-const cardboardShadow = 0.2
+export const cardboardShadow = 0.2
 const woodShadow = 0.24
 export const panoramaTileSize = { width: 3.41, height: 9.98 }
 export const startingTileSize = { width: 3.42, height: 11.58 }
@@ -86,7 +86,7 @@ function starDiscs(players: number) {
 }
 
 /** How far the star reaches on the left and on the right of its middle */
-const starLeft = (players: number) => Math.min(...starDiscs(players).map(({ center, radius }) => center.x - radius))
+export const starLeft = (players: number) => Math.min(...starDiscs(players).map(({ center, radius }) => center.x - radius))
 const starRight = (players: number) => Math.max(...starDiscs(players).map(({ center, radius }) => center.x + radius))
 
 const objectivesSpacing = 0.1
@@ -95,7 +95,7 @@ const objectivesWidth = 3 * objectiveSize.width + 2 * objectivesSpacing
 /** The Objectives stand in the bottom left corner of the table, that far from its edges */
 const objectivesMargin = 1
 /** The table reaches a little further than the star on its left */
-const tableEdge = 0.2
+export const tableEdge = 0.2
 
 /**
  * The Objectives lie in the bottom left corner of the table, in the room left between two branches of the star. The
@@ -113,7 +113,7 @@ function objectivesTop(players: number) {
 }
 
 /** Height of the column of common elements (star and Objectives) */
-const commonColumnHeight = (players: number) => starRadius(players) + objectivesTop(players) + objectiveSize.height + objectivesMargin
+export const commonColumnHeight = (players: number) => starRadius(players) + objectivesTop(players) + objectiveSize.height + objectivesMargin
 
 /** The middle of the star, where the Centrepiece lies: the column of common elements is centred on y = 0 */
 function starCenter(players: number): XYCoordinates {
@@ -121,8 +121,7 @@ function starCenter(players: number): XYCoordinates {
 }
 
 /** The middle of the first Objective, the others following to the right */
-export function firstObjectivePosition(players: number): XYCoordinates {
-  const { xMin, yMax } = tableBounds(players)
+export function firstObjectivePosition({ xMin, yMax }: { xMin: number; yMax: number }): XYCoordinates {
   return { x: xMin + objectivesMargin + objectiveSize.width / 2, y: yMax - objectivesMargin - objectiveSize.height / 2 }
 }
 
@@ -170,24 +169,19 @@ export const tileWaves = tileHeight / waveLength
 export const startingTileRise = (startingTileSize.height - panoramaTileSize.height) / 2
 
 /**
- * The box kept for each Panorama: as many columns as a Panorama may reasonably reach at this player count (about
- * 28 / players tiles each, plus the Starting Tile), and two waves of offset above and below the Starting Tile. A Panorama
- * is shifted inside it only once it overflows (see PanoramaLocator).
+ * The box kept by default for each Panorama: as many columns as a Panorama may reasonably reach at this player count
+ * (about 28 / players tiles each, plus the Starting Tile), and two waves of offset above and below the Starting Tile. The
+ * box shifts when a Panorama does not fit in it, and grows when it is larger (see PanoramaWindow).
  */
 export const panoramaColumns = (players: number) => (players === 2 ? 12 : 10)
 export const panoramaWaves = tileWaves + 1 + 4
-const boxHeight = panoramaWaves * waveLength
-/** From the left edge of the first column to the right edge of the last one, shadows excluded */
-const boxWidth = (players: number) => panoramaColumns(players) * columnWidth + 0.1
-const rowGap = 0.4
-const rowHeight = boxHeight + rowGap
-const boxGap = 0.6
-const cellWidth = (players: number) => boxWidth(players) + 2 * cardboardShadow + boxGap
+export const rowGap = 0.4
+export const boxGap = 0.6
 
 export const panoramaLeft = (players: number) => starRight(players) + 0.6 + cardboardShadow
 
 /** The reader's Panorama comes first (the first player's for a spectator), then the others in turn order */
-function displayIndex(player: PlayerColor, players: PlayerColor[], me?: PlayerColor) {
+export function displayIndex(player: PlayerColor, players: PlayerColor[], me?: PlayerColor) {
   const start = me !== undefined ? players.indexOf(me) : 0
   return (players.indexOf(player) - start + players.length) % players.length
 }
@@ -198,7 +192,7 @@ function displayIndex(player: PlayerColor, players: PlayerColor[], me?: PlayerCo
  * as high as the screen and has room on its right. With 2 Panoramas per row (3 and 4 players), it is as wide as the
  * screen: panels above or under the Panoramas cost nothing, panels on the right would shrink it.
  */
-type PanelPlace = 'right' | 'beside' | 'above' | 'below'
+export type PanelPlace = 'right' | 'beside' | 'above' | 'below'
 
 /** The Panoramas in display order: their cell (column and row) and where their panel stands */
 const panoramaCells: Record<number, { column: number; row: number; panel: PanelPlace }[]> = {
@@ -222,11 +216,10 @@ const panoramaCells: Record<number, { column: number; row: number; panel: PanelP
   ]
 }
 
-const cells = (players: number) => panoramaCells[players] ?? panoramaCells[2]
-const panoramaRows = (players: number) => Math.max(...cells(players).map((cell) => cell.row)) + 1
-const panoramaGridColumns = (players: number) => Math.max(...cells(players).map((cell) => cell.column)) + 1
+export const cells = (players: number) => panoramaCells[players] ?? panoramaCells[2]
+
 /** The room kept for panels above or under rows: one per row and side */
-const panelRooms = (players: number) =>
+export const panelRooms = (players: number) =>
   cells(players).filter(
     (cell, index, all) =>
       (cell.panel === 'above' || cell.panel === 'below') &&
@@ -237,30 +230,10 @@ const panelRooms = (players: number) =>
  * The room kept under a row for its panels, which keep their size on the screen: zoomed out, the table fills the height
  * between its margins, so the panels take a fixed share of its height.
  */
-const panelShare = (players: number) => {
+export const panelShare = (players: number) => {
   const margin = tableMargin(players)
   return (panelEmHeight + 2 * panelEmGap) / (100 - margin.top - margin.bottom)
 }
-
-function panoramaColumnHeight(players: number) {
-  return (panoramaRows(players) * rowHeight) / (1 - panelRooms(players).length * panelShare(players))
-}
-
-/** The top left corner of a player's box: the left edge of its first column, and the top of the box */
-export function panoramaBox(player: PlayerColor, players: PlayerColor[], me?: PlayerColor): XYCoordinates {
-  const count = players.length
-  const cell = cells(count)[displayIndex(player, players, me)]
-  const panelRoom = panelShare(count) * panoramaColumnHeight(count)
-  const roomsAbove = panelRooms(count).filter((room) => room.row < cell.row || (room.row === cell.row && room.panel === 'above'))
-  return {
-    x: panoramaLeft(count) + cell.column * cellWidth(count),
-    y: -panoramaColumnHeight(count) / 2 + rowGap / 2 + cell.row * rowHeight + roomsAbove.length * panelRoom
-  }
-}
-
-/** The right edge of the Panoramas */
-const panoramaRight = (players: number) =>
-  panoramaLeft(players) + (panoramaGridColumns(players) - 1) * cellWidth(players) + boxWidth(players) + cardboardShadow
 
 // ------------------------------------------------------------------ screen
 
@@ -277,40 +250,4 @@ export function tableMargin(players: number) {
 }
 
 /** The balloon printed on the Starting Tiles is that far below their top edge */
-const startingTileBalloon = 1.6
-
-/**
- * Where a player's panel stands when the table is fully zoomed out, in centimetres of table: level with the balloon of
- * the Starting Tile (which stands by default two waves below the top of its box) on the right of the screen or just
- * right of the Panorama, or above or under the Panorama, centred on the column of the Starting Tile (which stands by
- * default in the middle of its box, on the left of the middle when the box has an even number of columns).
- */
-export function panelAnchor(player: PlayerColor, players: PlayerColor[], me?: PlayerColor) {
-  const count = players.length
-  const box = panoramaBox(player, players, me)
-  const place = cells(count)[displayIndex(player, players, me)].panel
-  const balloon = box.y + ((panoramaWaves - tileWaves - 1) / 2) * waveLength + startingTileBalloon
-  const startingTile = box.x + (Math.floor((panoramaColumns(count) - 1) / 2) + 0.5) * columnWidth
-  switch (place) {
-    case 'right':
-      return { y: balloon, place }
-    case 'beside':
-      return { x: box.x + boxWidth(count) + cardboardShadow + boxGap, y: balloon, place }
-    case 'above':
-      return { x: startingTile, y: box.y, place }
-    case 'below':
-      return { x: startingTile, y: box.y + boxHeight, place }
-  }
-}
-
-// ------------------------------------------------------------------ table
-
-export function tableBounds(players: number) {
-  const halfHeight = Math.max(commonColumnHeight(players), panoramaColumnHeight(players)) / 2
-  return {
-    xMin: starLeft(players) - tableEdge,
-    xMax: panoramaRight(players) + 0.2,
-    yMin: -halfHeight,
-    yMax: halfHeight
-  }
-}
+export const startingTileBalloon = 1.6
