@@ -145,6 +145,28 @@ def wooden_pieces(src, out):
         opaque.save(os.path.join(out, "tokens", name + ".webp"), lossless=True, method=6)
 
 
+def icons(src, out):
+    """The animals and flowers of the Distribution box of the rulebook (last page): images with their transparency."""
+    rules = pymupdf.open(find(src, "PAN_Rules_FR_"))
+    page = rules[-1]
+    found = []
+    for xref, smask, *_ in page.get_images(full=True):
+        rect = page.get_image_rects(xref)[0]
+        if smask and rect.width < 100:
+            found.append((round(rect.y0 / 20), rect.x0, xref, smask))
+    names = ["Bear", "Fox", "Sheep", "Crow", "MountainFlower", "ForestFlower", "HillsFlower", "FieldsFlower"]
+    found = [f for f in sorted(found) if f[0] < 15]  # the 2 rows of the box, not the logo at the bottom
+    assert len(found) == len(names), found
+    os.makedirs(os.path.join(out, "icons"), exist_ok=True)
+    for name, (_, _, xref, smask) in zip(names, found):
+        pix = pymupdf.Pixmap(pymupdf.csRGB, pymupdf.Pixmap(rules, xref))
+        pix = pymupdf.Pixmap(pix, pymupdf.Pixmap(rules, smask))
+        im = Image.frombytes("RGBA", (pix.width, pix.height), pix.samples)
+        im = im.crop(im.getchannel("A").getbbox())
+        im.thumbnail((120, 120), Image.LANCZOS)
+        im.save(os.path.join(out, "icons", name + ".webp"), lossless=True, method=6)
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         sys.exit(__doc__)

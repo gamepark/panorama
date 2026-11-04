@@ -1,15 +1,23 @@
 {
   "header": {
     "move-balloon": {
-      "you": "Avancez votre Montgolfière jusqu'à une pile inoccupée, ou posez directement sa Tuile",
+      "you": "Avancez votre Montgolfière et placez une Tuile",
       "player": "{player} avance sa Montgolfière"
     },
+    "move-balloon-last": {
+      "you": "Dernier tour : avancez votre Montgolfière et placez une Tuile",
+      "player": "Dernier tour de {player} : choix d’une pile"
+    },
     "place-tile": {
-      "you": "Posez la Tuile à gauche ou à droite de votre Panorama",
+      "you": "Placez la Tuile dans votre Panorama",
       "player": "{player} pose une Tuile dans son Panorama"
     },
+    "place-tile-last": {
+      "you": "Dernier tour : placez la Tuile dans votre Panorama",
+      "player": "Dernier tour de {player} : pose d’une Tuile"
+    },
     "validate-tile": {
-      "you": "<validate>Valider</validate> la Tuile, la déplacer ou la <cancel>remettre</cancel>",
+      "you": "<validate>Validez</validate> la position de la Tuile ou <cancel>annulez</cancel>",
       "player": "{player} pose une Tuile dans son Panorama"
     }
   },
@@ -21,5 +29,134 @@
       "5": "Champs"
     },
     "total": "Total"
+  },
+  "help": {
+    "tile": {
+      "title": "Tuile Panorama",
+      "intro": "Chaque tour, le joueur actif prend une Tuile du dessus d’une pile et l’ajoute à son <bold>Panorama</bold>.",
+      "top": "Cette Tuile est sur le dessus de sa pile : elle peut être prise.",
+      "covered": "Cette Tuile est cachée sous une autre Tuile de la pile.",
+      "mine": "Cette Tuile fait partie de votre Panorama.",
+      "owner": "Cette Tuile fait partie du Panorama de {player}."
+    },
+    "starting-tile": {
+      "title": "Tuile de départ",
+      "intro": "Chaque Panorama commence par la Tuile de départ, à la couleur de sa Montgolfière. Elle partage le Panorama en <bold>2 côtés</bold>, que comptent certains Objectifs."
+    },
+    "placement": {
+      "title": "Poser une Tuile",
+      "side": "Ajoutez la Tuile <bold>à gauche ou à droite</bold> des Tuiles de votre Panorama.",
+      "between": "Vous ne pouvez pas ajouter une Tuile <bold>entre 2 Tuiles</bold> déjà présentes, ni bouger des Tuiles déjà placées.",
+      "waves": "Les rebords en forme de vagues doivent <bold>s’emboîter</bold> parfaitement. Les Tuiles peuvent être décalées, tant qu’elles s’emboîtent correctement."
+    },
+    "zones": {
+      "title": "Zones de Terrain",
+      "zone": "Une <bold>Zone de Terrain</bold> est une zone ininterrompue de Terrains du même type connectés ensemble de manière orthogonale. Les diagonales ne comptent pas.",
+      "score": "À la fin de la partie, chaque Zone de Terrain rapporte son nombre de <bold>Fleurs</bold> multiplié par son nombre d’<bold>Animaux</bold>. Des Fleurs sans Animal dans leur Zone ne rapportent rien."
+    },
+    "terrain": {
+      "2": "Montagne",
+      "3": "Forêt",
+      "4": "Prairie",
+      "5": "Champs"
+    },
+    "distribution": {
+      "title": "Distribution"
+    },
+    "objective": {
+      "1": {
+        "title": "Le moins de nuages",
+        "rule": "Avoir <bold>le moins de Nuages</bold> dans votre ciel. Peu importe la connexion des Zones de ciel !"
+      },
+      "2": {
+        "title": "Le plus de nuages d’un côté",
+        "rule": "Avoir <bold>le plus de Nuages d’un côté</bold> de votre Montgolfière (Tuile de départ). Peu importe la connexion des Zones de ciel !"
+      },
+      "3": {
+        "title": "La plus grande zone de ciel",
+        "rule": "Avoir <bold>la plus grande Zone de ciel</bold>. Les espaces de ciel doivent être connectés !"
+      },
+      "4": {
+        "title": "Le plus de tuiles d’un côté",
+        "rule": "Avoir <bold>le plus de Tuiles d’un côté</bold> de votre Montgolfière."
+      },
+      "5": {
+        "title": "La plus longue rivière",
+        "rule": "Avoir <bold>la plus longue Rivière</bold> continue."
+      },
+      "6": {
+        "title": "Le plus d’animaux accolés à la même rivière",
+        "rule": "Avoir <bold>le plus d’Animaux accolés à la même Rivière</bold>. N’additionnez pas les Animaux accolés à des Rivières séparées ! Attention : certains Animaux ne sont pas accolés à une Rivière."
+      },
+      "7": {
+        "title": "Le plus de rivières séparées",
+        "rule": "Avoir <bold>le plus grand nombre de Rivières séparées</bold> qui s’étendent sur au moins 2 Tuiles."
+      },
+      "8": {
+        "title": "Le plus de cascades dans la même rivière",
+        "rule": "Avoir <bold>le plus de Cascades dans la même Rivière</bold>. N’additionnez pas les Cascades de Rivières séparées !"
+      },
+      "9": {
+        "title": "Le plus de corbeaux",
+        "rule": "Avoir le Panorama avec <bold>le plus de Corbeaux</bold>. Peu importe la connexion des Zones."
+      },
+      "10": {
+        "title": "Le moins de tuiles",
+        "rule": "Avoir le Panorama avec <bold>le moins de Tuiles</bold>."
+      },
+      "11": {
+        "title": "Le plus de zones avec un animal",
+        "rule": "Avoir <bold>le plus de Zones de Terrain contenant au moins 1 Animal</bold>. Une Zone de Terrain contenant plusieurs Animaux compte pour 1."
+      },
+      "12": {
+        "title": "Le moins de zones de terrain",
+        "rule": "Avoir <bold>le moins de Zones de Terrain</bold>. On ne compte pas le ciel !"
+      },
+      "scoring": {
+        "title": "Décompte",
+        "text": "À la fin de la partie, l’Objectif rapporte <bold>{points} points</bold> au Panorama qui y répond le mieux. En cas d’égalité, chaque joueur à égalité marque {points} points."
+      },
+      "current": "En ce moment",
+      "first-game": "Cet Objectif est marqué d’une étoile : il fait partie des 3 Objectifs de la première partie."
+    },
+    "turn": {
+      "title": "Tour de jeu",
+      "whose": "Si votre Montgolfière se trouve sur le même espace que le <bold>jeton Soleil</bold>, c’est votre tour :",
+      "choose": "<bold>Choisir une Tuile</bold> : avancez votre Montgolfière jusqu’à une pile inoccupée (sans Soleil ni Montgolfière) et prenez la Tuile du dessus.",
+      "place": "<bold>Poser la Tuile</bold> à gauche ou à droite de votre Panorama.",
+      "sun": "<bold>Avancer le Soleil</bold> en sens horaire jusqu’à la prochaine Montgolfière : son propriétaire joue le tour suivant.",
+      "order": "L’ordre de jeu change donc en cours de partie : vous pouvez même jouer 2, voire 3 tours de suite. Mais si vous avancez votre Montgolfière très loin, vous risquez d’attendre longtemps avant de rejouer."
+    },
+    "end": {
+      "title": "Fin de partie",
+      "trigger": "Quand un joueur prend <bold>la dernière Tuile d’une pile</bold> et la pose dans son Panorama, il couche sa Montgolfière : son vol est terminé, il ne jouera plus.",
+      "moon": "Le jeton Soleil est retourné sur sa face <bold>Lune</bold> et avance jusqu’à la prochaine Montgolfière. Le joueur dont la Montgolfière se trouve avec la Lune joue son <bold>dernier tour</bold>, couche sa Montgolfière, puis avance la Lune.",
+      "score": "Quand toutes les Montgolfières sont couchées, on procède au <bold>décompte des points</bold> : les Zones de Terrain, puis les Objectifs."
+    },
+    "balloon": {
+      "title": "Montgolfière",
+      "mine": "Votre <bold>Montgolfière</bold>. Elle avance de pile en pile, en sens horaire, pour choisir vos Tuiles.",
+      "player": "La <bold>Montgolfière</bold> de {player}. Elle avance de pile en pile, en sens horaire, pour choisir ses Tuiles.",
+      "deflated": "Cette Montgolfière est couchée : son vol est terminé."
+    },
+    "sun": {
+      "title": "Jeton Soleil",
+      "intro": "Le <bold>Soleil</bold> indique le joueur qui doit jouer : celui dont la Montgolfière se trouve sur le même espace."
+    },
+    "moon": {
+      "title": "Jeton Lune",
+      "intro": "La <bold>Lune</bold> indique que la fin de partie est déclenchée : le joueur dont la Montgolfière se trouve avec elle joue son dernier tour."
+    },
+    "centrepiece": {
+      "title": "Pièce centrale",
+      "intro": "La Pièce centrale <bold>à {players} joueurs</bold> a {stacks} côtés. Devant chaque côté, une pile de {size} Tuiles face visible.",
+      "stacks": {
+        "title": "Les piles",
+        "top": "Seule la <bold>Tuile du dessus</bold> d’une pile est visible. On peut la prendre si aucune Montgolfière ni le Soleil n’est au bout de la pile.",
+        "sunrise": "Le jeton Soleil commence au bout de la pile accolée à <bold>l’icône de lever du Soleil</bold>. Les Montgolfières sont placées au hasard, une par pile, à partir de celle-ci en sens horaire.",
+        "end": "Quand un joueur prend <bold>la dernière Tuile d’une pile</bold>, la fin de partie est déclenchée."
+      },
+      "left": "{tiles} Tuiles restent dans {stacks} piles."
+    }
   }
 }

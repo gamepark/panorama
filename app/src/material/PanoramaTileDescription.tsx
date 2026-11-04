@@ -8,6 +8,7 @@ import { ItemContext, ItemMenuButton, TokenDescription } from '@gamepark/react-g
 import { MaterialItem } from '@gamepark/rules-api'
 import { panoramaTileImages, TileBack } from '../images/Images'
 import { panoramaTileSize } from '../locators/TableLayout'
+import { PanoramaTileHelp } from './help/TileHelps'
 import { getPreviewTile } from './PreviewTile'
 
 /**
@@ -22,6 +23,7 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
   images = panoramaTileImages
   backImage = TileBack
   menuAlwaysVisible = true
+  help = PanoramaTileHelp
 
   getItemMenu(item: MaterialItem<PlayerColor, LocationType>, context: ItemContext<PlayerColor, MaterialType, LocationType>) {
     if (item.location.type !== LocationType.Panorama) return

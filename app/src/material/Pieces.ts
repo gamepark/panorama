@@ -5,6 +5,7 @@ import { MaterialContext, RoundTokenDescription, SoundKit, TokenDescription } fr
 import { MaterialItem } from '@gamepark/rules-api'
 import { hotAirBalloonImages, Moon, Sun } from '../images/Images'
 import { hotAirBalloonSize, sunMoonDiameter } from '../locators/TableLayout'
+import { HotAirBalloonHelp, SunMoonTokenHelp } from './help/TurnHelps'
 
 /** The wooden Hot-Air Balloons: the image carries its shadow */
 export class HotAirBalloonDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, PlayerColor> {
@@ -14,6 +15,7 @@ export class HotAirBalloonDescription extends TokenDescription<PlayerColor, Mate
   transparency = true
   images = hotAirBalloonImages
   soundKit = SoundKit.Wood
+  help = HotAirBalloonHelp
 }
 
 /**
@@ -25,6 +27,7 @@ export class SunMoonTokenDescription extends RoundTokenDescription<PlayerColor, 
   image = Sun
   backImage = Moon
   soundKit = SoundKit.Wood
+  help = SunMoonTokenHelp
 
   isFlipped(item: Partial<MaterialItem<PlayerColor, LocationType>>, _context: MaterialContext<PlayerColor, MaterialType, LocationType>) {
     return !!item.location?.rotation

@@ -1,8 +1,17 @@
+import { Landscape } from '@gamepark/panorama/material/Landscape'
 import { Objective } from '@gamepark/panorama/material/Objective'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import Centrepiece2 from './centrepieces/Centrepiece2.webp'
 import Centrepiece3 from './centrepieces/Centrepiece3.webp'
 import Centrepiece4 from './centrepieces/Centrepiece4.webp'
+import Bear from './icons/Bear.webp'
+import Crow from './icons/Crow.webp'
+import FieldsFlower from './icons/FieldsFlower.webp'
+import ForestFlower from './icons/ForestFlower.webp'
+import Fox from './icons/Fox.webp'
+import HillsFlower from './icons/HillsFlower.webp'
+import MountainFlower from './icons/MountainFlower.webp'
+import Sheep from './icons/Sheep.webp'
 import FewestClouds from './objectives/FewestClouds.webp'
 import FewestTiles from './objectives/FewestTiles.webp'
 import FewestZones from './objectives/FewestZones.webp'
@@ -67,4 +76,19 @@ export const objectiveImages: Record<Objective, string> = {
   [Objective.FewestTiles]: FewestTiles,
   [Objective.MostZonesWithAnimal]: MostZonesWithAnimal,
   [Objective.FewestZones]: FewestZones
+}
+
+/** The animal and the flower of each terrain (the Distribution box of the rulebook) */
+export const animalImages: Partial<Record<Landscape, string>> = {
+  [Landscape.Mountain]: Bear,
+  [Landscape.Forest]: Fox,
+  [Landscape.Hills]: Sheep,
+  [Landscape.Fields]: Crow
+}
+
+export const flowerImages: Partial<Record<Landscape, string>> = {
+  [Landscape.Mountain]: MountainFlower,
+  [Landscape.Forest]: ForestFlower,
+  [Landscape.Hills]: HillsFlower,
+  [Landscape.Fields]: FieldsFlower
 }
