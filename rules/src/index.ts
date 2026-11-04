@@ -1,3 +1,3 @@
-export { GameTemplateRules } from './GameTemplateRules'
-export { GameTemplateOptionsSpecV2 } from './GameTemplateOptions'
-export { GameTemplateSetup } from './GameTemplateSetup'
+export { PanoramaRules } from './PanoramaRules'
+export { PanoramaOptionsSpecV2 } from './PanoramaOptions'
+export { PanoramaSetup } from './PanoramaSetup'

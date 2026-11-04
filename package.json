@@ -12,12 +12,12 @@
     "typescript": "^7.0.2"
   },
   "scripts": {
-    "dev": "yarn workspace @gamepark/game-template-app run dev",
-    "test": "yarn workspace @gamepark/game-template run test && yarn workspace @gamepark/game-template-app run test",
-    "preview": "yarn workspace @gamepark/game-template-app run preview",
-    "build": "yarn workspace @gamepark/game-template-app run build",
-    "deploy": "yarn workspace @gamepark/game-template-app run deploy",
-    "publish": "yarn workspace @gamepark/game-template run publish",
+    "dev": "yarn workspace @gamepark/panorama-app run dev",
+    "test": "yarn workspace @gamepark/panorama run test && yarn workspace @gamepark/panorama-app run test",
+    "preview": "yarn workspace @gamepark/panorama-app run preview",
+    "build": "yarn workspace @gamepark/panorama-app run build",
+    "deploy": "yarn workspace @gamepark/panorama-app run deploy",
+    "publish": "yarn workspace @gamepark/panorama run publish",
     "lint": "oxlint",
     "linkgp": "yarn link ../rules-api ../react-client ../react-game -r && git update-index --skip-worktree package.json yarn.lock",
     "unlinkgp": "git update-index --no-skip-worktree package.json yarn.lock && yarn unlink ../react-game ../react-client ../rules-api"

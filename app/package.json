@@ -1,9 +1,9 @@
 {
-  "name": "@gamepark/game-template-app",
+  "name": "@gamepark/panorama-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "description": "The user interface of Game Template adaptation for Game Park",
+  "description": "The user interface of Panorama adaptation for Game Park",
   "author": "Romain Fromi <romain@game-park.com> (https://game-park.com/)",
   "license": "ISC",
   "scripts": {
@@ -11,10 +11,10 @@
     "test": "vitest",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "upload-sourcemaps": "datadog-ci sourcemaps upload dist/assets --service=game-template --release-version=$npm_package_version --minified-path-prefix=/assets/",
-    "sync:hashed": "rclone copy dist game-template:game-template.game-park.com --progress --s3-acl=public-read --include \"assets/**\" -M --metadata-set \"cache-control=public, max-age=31536000, immutable\"",
-    "sync:other": "rclone sync dist game-template:game-template.game-park.com --progress --s3-acl=public-read --exclude \"assets/**\" --ignore-times -M --metadata-set \"cache-control=no-cache\"",
-    "sync:clean": "rclone sync dist game-template:game-template.game-park.com --progress --s3-acl=public-read --include \"assets/**\" -M --metadata-set \"cache-control=public, max-age=31536000, immutable\"",
+    "upload-sourcemaps": "datadog-ci sourcemaps upload dist/assets --service=panorama --release-version=$npm_package_version --minified-path-prefix=/assets/",
+    "sync:hashed": "rclone copy dist panorama:panorama.game-park.com --progress --s3-acl=public-read --include \"assets/**\" -M --metadata-set \"cache-control=public, max-age=31536000, immutable\"",
+    "sync:other": "rclone sync dist panorama:panorama.game-park.com --progress --s3-acl=public-read --exclude \"assets/**\" --ignore-times -M --metadata-set \"cache-control=no-cache\"",
+    "sync:clean": "rclone sync dist panorama:panorama.game-park.com --progress --s3-acl=public-read --include \"assets/**\" -M --metadata-set \"cache-control=public, max-age=31536000, immutable\"",
     "sync": "npx rimraf dist/assets/*.map && yarn sync:hashed && yarn sync:other && yarn sync:clean",
     "deploy": "yarn build && node -e \"if(process.env.DATADOG_API_KEY){require('child_process').execSync('yarn upload-sourcemaps',{stdio:'inherit'})}\" && yarn sync"
   },
