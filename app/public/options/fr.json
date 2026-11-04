@@ -3,5 +3,15 @@
   "identities.1": "Bleu",
   "identities.2": "Rouge",
   "identities.3": "Vert",
-  "identities.4": "Jaune"
+  "identities.4": "Jaune",
+  "option.objectives": "Objectifs",
+  "option.objectives.help": "Les 3 Objectifs de la partie",
+  "option.objectives.1": "Au hasard, un de chaque couleur",
+  "option.objectives.2": "Première partie",
+  "option.objectives.3": "Scénario : Festival des animaux",
+  "option.objectives.4": "Scénario : Amoureux des rivières",
+  "option.objectives.5": "Scénario : Plein la vue",
+  "option.objectives.6": "Scénario : Suivre le fil",
+  "option.objectives.7": "Scénario : Petite promenade",
+  "option.objectives.8": "Scénario : Minimalisme"
 }

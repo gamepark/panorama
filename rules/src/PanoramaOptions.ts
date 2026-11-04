@@ -1,4 +1,5 @@
 import { getEnumValues, OptionsSpecV2 } from '@gamepark/rules-api'
+import { ObjectiveSet } from './material/ObjectiveSet'
 import { PlayerColor } from './PlayerColor'
 
 /**
@@ -12,6 +13,8 @@ type PlayerOptions = { id: PlayerColor }
  */
 export type PanoramaOptions = {
   players: PlayerOptions[]
+  /** How the 3 Objectives are chosen: at random by default */
+  objectives?: ObjectiveSet
 }
 
 /**
@@ -34,5 +37,8 @@ export type PanoramaOptions = {
 export const PanoramaOptionsSpecV2: OptionsSpecV2 = {
   specVersion: 2,
   players: { min: 2, max: 4 },
-  identities: { values: getEnumValues(PlayerColor) }
+  identities: { values: getEnumValues(PlayerColor) },
+  options: {
+    objectives: { kind: 'enum', values: getEnumValues(ObjectiveSet) }
+  }
 }
