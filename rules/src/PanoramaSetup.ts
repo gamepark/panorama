@@ -50,14 +50,12 @@ export class PanoramaSetup extends MaterialGameSetup<PlayerColor, MaterialType, 
   }
 
   /**
-   * Each player gets the Starting Tile and the Hot-Air Balloon of their colour. The balloons are dropped at random:
-   * the first one in front of the stack of the Sun, the next ones clockwise.
+   * Each player gets the Starting Tile and the Hot-Air Balloon of their colour. The balloons are dropped in the order of
+   * the players, which is already random: the first one in front of the stack of the Sun, the next ones clockwise.
    */
   setupPlayers() {
-    for (const player of this.players) {
+    this.players.forEach((player, stack) => {
       this.material(MaterialType.StartingTile).createItem({ id: player, location: { type: LocationType.Panorama, player, x: 0, y: 0 } })
-    }
-    shuffle(this.players).forEach((player, stack) => {
       this.material(MaterialType.HotAirBalloon).createItem({ id: player, location: { type: LocationType.StackSpace, id: stack } })
     })
   }
