@@ -7,6 +7,7 @@ import { PanoramaRules } from './PanoramaRules'
 import { PanoramaSetup } from './PanoramaSetup'
 import { PlayerColor } from './PlayerColor'
 import { RuleId } from './rules/RuleId'
+import { objectivePoints, Scoring } from './Scoring'
 
 type Game = MaterialGame<PlayerColor, MaterialType, LocationType, RuleId>
 
@@ -60,6 +61,13 @@ describe('Random games', () => {
         const rules = new PanoramaRules(game)
         for (const item of rules.material(MaterialType.HotAirBalloon).getItems()) expect(item.location.rotation).toBe(true)
         expect(rules.material(MaterialType.SunMoonToken).getItem()!.location.rotation).toBe(true)
+        // Every player has a score, and each of the 3 Objectives is won by at least one player
+        expect(game.players.every((player) => Number.isInteger(rules.getScore(player)) && rules.getScore(player) >= 0)).toBe(true)
+        const scoring = new Scoring(rules)
+        expect(scoring.objectives).toHaveLength(3)
+        for (const objective of scoring.objectives) {
+          expect(game.players.some((player) => scoring.objectiveScore(player, objective) === objectivePoints)).toBe(true)
+        }
         // At least one stack has been emptied
         const stacks = new Set(rules.material(MaterialType.PanoramaTile).location(LocationType.Stack).getItems().map((item) => item.location.id))
         expect(stacks.size).toBeLessThan(getStackCount(players))

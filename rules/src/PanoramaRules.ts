@@ -1,4 +1,5 @@
 import {
+  CompetitiveScore,
   HiddenMaterialRules,
   isMoveItemType,
   LocalMovePreview,
@@ -15,6 +16,7 @@ import { Memory, PreviewTile } from './rules/Memory'
 import { MoveBalloonRule } from './rules/MoveBalloonRule'
 import { PlaceTileRule } from './rules/PlaceTileRule'
 import { RuleId } from './rules/RuleId'
+import { Scoring } from './Scoring'
 
 /**
  * The stacks are face up, but only their top tile can be seen. When a tile is taken, the one below it is revealed only
@@ -30,7 +32,8 @@ export class PanoramaRules
   extends HiddenMaterialRules<PlayerColor, MaterialType, LocationType>
   implements
     TimeLimit<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor>,
-    LocalMovePreview<MaterialMove<PlayerColor, MaterialType, LocationType>>
+    LocalMovePreview<MaterialMove<PlayerColor, MaterialType, LocationType>>,
+    CompetitiveScore<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor>
 {
   rules = {
     [RuleId.MoveBalloon]: MoveBalloonRule,
@@ -61,6 +64,11 @@ export class PanoramaRules
     const current = this.material(MaterialType.PanoramaTile).getItem(move.itemIndex).location
     const samePlace = current.type === move.location.type && current.player === move.location.player && current.x === move.location.x && current.y === move.location.y
     return this.remind<PreviewTile | undefined>(Memory.PreviewTile)?.tile !== move.itemIndex || !samePlace
+  }
+
+  /** See Scoring: the terrains, then the Objectives. Tied players share the victory. */
+  getScore(player: PlayerColor): number {
+    return new Scoring(this).score(player)
   }
 
   giveTime(): number {

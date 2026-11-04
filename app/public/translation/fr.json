@@ -12,5 +12,14 @@
       "you": "<validate>Valider</validate> la Tuile, la déplacer ou la <cancel>remettre</cancel>",
       "player": "{player} pose une Tuile dans son Panorama"
     }
+  },
+  "scoring": {
+    "terrain": {
+      "2": "Montagnes",
+      "3": "Forêts",
+      "4": "Prairies",
+      "5": "Champs"
+    },
+    "total": "Total"
   }
 }

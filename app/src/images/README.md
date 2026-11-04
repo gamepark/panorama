@@ -48,6 +48,11 @@ Run on the files of June–October 2026, this recipe reproduces the delivered im
   delivered upright, with the player count readable and the sunrise icon at the top.
 - **Objectives** are printed a quarter turn clockwise on the punchboard: they are delivered upright, the
   polaroid's white band at the bottom.
+- **Tile contents** (`rules/src/material/TileContents.ts`, for the scoring): `py -3.13 tools/images/tiles_content.py
+  <publisher-dir> rules/src/material/TileContents.ts --check` reads the rows, rivers, animals, flowers and clouds of
+  each tile from the tiles IDML, and the animals next to a river from the images of `tiles/` (so cut them first).
+  `--check` compares the rows with the colours along the edges of the images. The Starting Tiles are described in the
+  script: they are on the punchboard, and all 4 are drawn alike.
 - **Cover** (`app/public/cover-1920.jpg` / `.webp`): the box illustration without logo,
   `PAN_Package_EN_*\PAN_Box_EN_*\Links\Visuel_Couv_03.png` (2953 × 4134), cropped to 16:9 from y = 1450 (full
   width, 1661 px high) and resized to 1920 × 1080; JPEG and WebP quality 85.
