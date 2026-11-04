@@ -1,7 +1,7 @@
 {
   "header": {
     "move-balloon": {
-      "you": "Avancez votre Montgolfière jusqu'à une pile inoccupée",
+      "you": "Avancez votre Montgolfière jusqu'à une pile inoccupée, ou posez directement sa Tuile",
       "player": "{player} avance sa Montgolfière"
     },
     "place-tile": {

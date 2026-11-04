@@ -11,7 +11,7 @@ import {
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
-import { Memory } from './rules/Memory'
+import { Memory, PreviewTile } from './rules/Memory'
 import { MoveBalloonRule } from './rules/MoveBalloonRule'
 import { PlaceTileRule } from './rules/PlaceTileRule'
 import { RuleId } from './rules/RuleId'
@@ -60,7 +60,7 @@ export class PanoramaRules
     if (!isMoveItemType(MaterialType.PanoramaTile)(move) || move.location.type !== LocationType.Panorama) return false
     const current = this.material(MaterialType.PanoramaTile).getItem(move.itemIndex).location
     const samePlace = current.type === move.location.type && current.player === move.location.player && current.x === move.location.x && current.y === move.location.y
-    return this.remind(Memory.PreviewTile) !== move.itemIndex || !samePlace
+    return this.remind<PreviewTile | undefined>(Memory.PreviewTile)?.tile !== move.itemIndex || !samePlace
   }
 
   giveTime(): number {

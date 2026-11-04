@@ -1,3 +1,3 @@
-import { HeaderText } from '@gamepark/react-game'
+import { PreviewTileHeader } from './PreviewTileHeader'
 
-export const MoveBalloonHeader = () => <HeaderText code="move-balloon" />
+export const MoveBalloonHeader = () => <PreviewTileHeader code="move-balloon" />

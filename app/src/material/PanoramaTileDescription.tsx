@@ -30,7 +30,7 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
     const x = (item.location.x! < 0 ? -1 : 1) * (this.width / 2 + 1)
     return (
       <>
-        <ItemMenuButton move={preview.validate} x={x} y={-1.5} css={validateCss}>
+        <ItemMenuButton moves={preview.validate} x={x} y={-1.5} css={validateCss}>
           <FontAwesomeIcon icon={faCheck} />
         </ItemMenuButton>
         <ItemMenuButton move={preview.cancel} options={{ local: true }} x={x} y={1.5} css={cancelCss}>
