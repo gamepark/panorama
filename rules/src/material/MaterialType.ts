@@ -1,1 +1,8 @@
-export enum MaterialType {}
+export enum MaterialType {
+  Centrepiece = 1,
+  PanoramaTile,
+  StartingTile,
+  HotAirBalloon,
+  SunMoonToken,
+  ObjectiveToken
+}

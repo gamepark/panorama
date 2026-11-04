@@ -1,13 +1,13 @@
 import { css } from '@emotion/react'
-import { DevToolsHub, GameTable, GameTableNavigation } from '@gamepark/react-game'
+import { DevToolsHub, GameTable, usePlayers } from '@gamepark/react-game'
+import { tableBounds, tableMargin } from './locators/TableLayout'
 import { PlayerPanels } from './panels/PlayerPanels'
 
 export function GameDisplay() {
-  const margin = { top: 7, left: 0, right: 30, bottom: 0 }
+  const players = usePlayers()
   return (
     <>
-      <GameTable xMin={-50} xMax={50} yMin={-30} yMax={30} margin={margin} css={process.env.NODE_ENV === 'development' && tableBorder}>
-        <GameTableNavigation />
+      <GameTable {...tableBounds(players.length)} margin={tableMargin(players.length)} css={process.env.NODE_ENV === 'development' && tableBorder}>
         <PlayerPanels />
         {process.env.NODE_ENV === 'development' && <DevToolsHub fabBottom="calc(5em)" />}
       </GameTable>

@@ -1,28 +1,97 @@
 import { css } from '@emotion/react'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
-import { StyledPlayerPanel, usePlayers } from '@gamepark/react-game'
+import { StyledPlayerPanel, usePlayerId, usePlayers } from '@gamepark/react-game'
 import { createPortal } from 'react-dom'
+import { panelAnchor, panelEmGap, panelEmWidth, tableBounds, tableMargin } from '../locators/TableLayout'
 
+/**
+ * The panels are drawn on the screen, out of the table, where they stand against their owner's Panorama when the
+ * table is fully zoomed out (see panelAnchor). Zoomed out, the table fills the height between its margins, which sets
+ * how many em a centimetre of table takes, and it is centred in the width left to it.
+ */
 export const PlayerPanels = () => {
-  const players = usePlayers<PlayerColor>({ sortFromMe: true })
+  const players = usePlayers<PlayerColor>()
+  const me = usePlayerId<PlayerColor>()
   const root = document.getElementById('root')
-  if (!root) {
-    return null
-  }
-
+  if (!root) return null
+  const playerIds = players.map((player) => player.id)
+  const { xMin, xMax, yMin, yMax } = tableBounds(players.length)
+  const margin = tableMargin(players.length)
+  const emPerCm = (100 - margin.top - margin.bottom) / (yMax - yMin)
+  /** The left of the table on the screen, as a CSS length */
+  const tableLeft = `(100dvw - ${margin.left + margin.right + (xMax - xMin) * emPerCm}em) / 2 + ${margin.left}em`
   return createPortal(
     <>
-      {players.map((player, index) => (
-        <StyledPlayerPanel key={player.id} player={player} css={panelPosition(index)} activeRing />
-      ))}
+      {players.map((player) => {
+        const anchor = panelAnchor(player.id, playerIds, me)
+        const top = margin.top + (anchor.y - yMin) * emPerCm
+        const left = anchor.x !== undefined ? `calc(${tableLeft} + ${(anchor.x - xMin) * emPerCm}em)` : undefined
+        return (
+          <StyledPlayerPanel
+            key={player.id}
+            player={player}
+            css={[panelPlace[anchor.place](top, left), playerPanelColors[player.id]]}
+            activeRing
+          />
+        )
+      })}
     </>,
     root
   )
 }
 
-const panelPosition = (index: number) => css`
+const panelBase = css`
   position: absolute;
-  right: 1em;
-  top: ${8.5 + index * 16}em;
-  width: 28em;
+  width: ${panelEmWidth}em;
 `
+
+const panelPlace = {
+  /** On the right of the screen, its middle at this height */
+  right: (top: number) => css`
+    ${panelBase};
+    right: ${panelEmGap}em;
+    top: ${top}em;
+    transform: translateY(-50%);
+  `,
+  /** Its left edge there, its middle at this height */
+  beside: (top: number, left?: string) => css`
+    ${panelBase};
+    left: ${left};
+    top: ${top}em;
+    transform: translateY(-50%);
+  `,
+  /** Centred there, its bottom just above this height */
+  above: (top: number, left?: string) => css`
+    ${panelBase};
+    left: ${left};
+    top: ${top - panelEmGap}em;
+    transform: translate(-50%, -100%);
+  `,
+  /** Centred there, its top just under this height */
+  below: (top: number, left?: string) => css`
+    ${panelBase};
+    left: ${left};
+    top: ${top + panelEmGap}em;
+    transform: translateX(-50%);
+  `
+}
+
+const colors: Record<PlayerColor, { light: string; main: string; deep: string }> = {
+  [PlayerColor.Blue]: { light: '#9fd0ff', main: '#2f6fd1', deep: '#1b3f80' },
+  [PlayerColor.Red]: { light: '#ffad9e', main: '#d23b2e', deep: '#7d1c14' },
+  [PlayerColor.Green]: { light: '#b4ea9f', main: '#3c9a3a', deep: '#1f5a1e' },
+  [PlayerColor.Yellow]: { light: '#fff3a6', main: '#e3b21c', deep: '#8a6a0a' }
+}
+
+/** A gradient in the player's colour, the ring that marks the player to move turned to the same colour */
+const playerPanelColors = Object.fromEntries(
+  Object.entries(colors).map(([player, { light, main, deep }]) => [
+    player,
+    css`
+      background: linear-gradient(160deg, ${light} 0%, ${main} 100%);
+      border: 0.15em solid ${deep};
+      --gp-ring-color-1: ${light};
+      --gp-ring-color-2: ${deep};
+    `
+  ])
+)

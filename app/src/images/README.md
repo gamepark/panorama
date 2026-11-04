@@ -10,7 +10,7 @@ every canvas by **20 px (0.2 cm) on each side**: add 0.4 cm to the physical widt
 | `tiles/` | `Tile1` … `Tile36`, `TileBack` | 3.01 × 9.58 cm |
 | `start-tiles/` | `StartTileBlue`, `Red`, `Green`, `Yellow` | 2.98 × 11.14 cm |
 | `centrepieces/` | `Centrepiece2` (hexagon), `3` (heptagon), `4` (octagon) | ~6.3 cm across |
-| `objectives/` | one file per objective, named after it | 3.79 × 3.64 cm |
+| `objectives/` | one file per objective, named after it | 3.64 × 3.79 cm |
 | `pawns/` | `BalloonBlue`, `Red`, `Green`, `Yellow` (wood) | 2.2 × 2.58 cm, **provisional** |
 | `tokens/` | `Sun`, `Moon`: front and back of the wooden token | 2 cm diameter, **opaque** |
 
@@ -46,5 +46,10 @@ Run on the files of June–October 2026, this recipe reproduces the delivered im
   number.
 - **Centrepieces** are printed rotated on the punchboard (2 players by 90°, 3 players by 180°). They are
   delivered upright, with the player count readable and the sunrise icon at the top.
+- **Objectives** are printed a quarter turn clockwise on the punchboard: they are delivered upright, the
+  polaroid's white band at the bottom.
+- **Cover** (`app/public/cover-1920.jpg` / `.webp`): the box illustration without logo,
+  `PAN_Package_EN_*\PAN_Box_EN_*\Links\Visuel_Couv_03.png` (2953 × 4134), cropped to 16:9 from y = 1450 (full
+  width, 1661 px high) and resized to 1920 × 1080; JPEG and WebP quality 85.
 - Not delivered on purpose: the backs of the objectives, start tiles and centrepieces, which are never
   shown, and the score pad.
