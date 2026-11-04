@@ -1,7 +1,8 @@
 import { MaterialType } from '@gamepark/panorama/material/MaterialType'
 import { MaterialDescription } from '@gamepark/react-game'
 import { HotAirBalloonDescription, SunMoonTokenDescription } from './Pieces'
-import { CentrepieceDescription, ObjectiveTokenDescription, PanoramaTileDescription, StartingTileDescription } from './Tiles'
+import { PanoramaTileDescription } from './PanoramaTileDescription'
+import { CentrepieceDescription, ObjectiveTokenDescription, StartingTileDescription } from './Tiles'
 
 export const Material: Partial<Record<MaterialType, MaterialDescription>> = {
   [MaterialType.Centrepiece]: new CentrepieceDescription(),

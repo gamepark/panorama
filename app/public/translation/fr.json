@@ -1,1 +1,16 @@
-{}
+{
+  "header": {
+    "move-balloon": {
+      "you": "Avancez votre Montgolfière jusqu'à une pile inoccupée",
+      "player": "{player} avance sa Montgolfière"
+    },
+    "place-tile": {
+      "you": "Posez la Tuile à gauche ou à droite de votre Panorama",
+      "player": "{player} pose une Tuile dans son Panorama"
+    },
+    "validate-tile": {
+      "you": "<validate>Valider</validate> la Tuile, la déplacer ou la <cancel>remettre</cancel>",
+      "player": "{player} pose une Tuile dans son Panorama"
+    }
+  }
+}

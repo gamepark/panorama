@@ -10,6 +10,7 @@ import { hotAirBalloonSize, sunMoonDiameter } from '../locators/TableLayout'
 export class HotAirBalloonDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, PlayerColor> {
   width = hotAirBalloonSize.width
   height = hotAirBalloonSize.height
+  borderRadius = 0.3
   transparency = true
   images = hotAirBalloonImages
   soundKit = SoundKit.Wood

@@ -1,14 +1,26 @@
-import { HiddenMaterialRules, MaterialGame, MaterialItem, MaterialMove, PositiveSequenceStrategy, TimeLimit } from '@gamepark/rules-api'
+import {
+  HiddenMaterialRules,
+  isMoveItemType,
+  LocalMovePreview,
+  MaterialGame,
+  MaterialItem,
+  MaterialMove,
+  PositiveSequenceStrategy,
+  TimeLimit
+} from '@gamepark/rules-api'
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
+import { Memory } from './rules/Memory'
+import { MoveBalloonRule } from './rules/MoveBalloonRule'
+import { PlaceTileRule } from './rules/PlaceTileRule'
 import { RuleId } from './rules/RuleId'
-import { TheFirstStepRule } from './rules/TheFirstStepRule'
 
 /**
- * The stacks are face up, but only their top tile can be seen: the ones below it are covered.
+ * The stacks are face up, but only their top tile can be seen. When a tile is taken, the one below it is revealed only
+ * once the turn is over (rotation = revealed).
  */
-const hideCoveredTile = (item: MaterialItem<PlayerColor, LocationType>): string[] => (item.location.x! > 0 ? ['id'] : [])
+const hideUnrevealedTile = (item: MaterialItem<PlayerColor, LocationType>): string[] => (item.location.rotation ? [] : ['id'])
 
 /**
  * This class implements the rules of the board game.
@@ -16,10 +28,13 @@ const hideCoveredTile = (item: MaterialItem<PlayerColor, LocationType>): string[
  */
 export class PanoramaRules
   extends HiddenMaterialRules<PlayerColor, MaterialType, LocationType>
-  implements TimeLimit<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor>
+  implements
+    TimeLimit<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor>,
+    LocalMovePreview<MaterialMove<PlayerColor, MaterialType, LocationType>>
 {
   rules = {
-    [RuleId.TheFirstStep]: TheFirstStepRule
+    [RuleId.MoveBalloon]: MoveBalloonRule,
+    [RuleId.PlaceTile]: PlaceTileRule
   }
 
   locationsStrategies = {
@@ -33,8 +48,19 @@ export class PanoramaRules
 
   hidingStrategies = {
     [MaterialType.PanoramaTile]: {
-      [LocationType.Stack]: hideCoveredTile
+      [LocationType.Stack]: hideUnrevealedTile
     }
+  }
+
+  /**
+   * Laying a tile in one's Panorama stays on the player's side, as a preview they can still change. Only the validation,
+   * a move of the previewed tile to the place where it already is, goes to the server.
+   */
+  previewMove(move: MaterialMove<PlayerColor, MaterialType, LocationType>): boolean {
+    if (!isMoveItemType(MaterialType.PanoramaTile)(move) || move.location.type !== LocationType.Panorama) return false
+    const current = this.material(MaterialType.PanoramaTile).getItem(move.itemIndex).location
+    const samePlace = current.type === move.location.type && current.player === move.location.player && current.x === move.location.x && current.y === move.location.y
+    return this.remind(Memory.PreviewTile) !== move.itemIndex || !samePlace
   }
 
   giveTime(): number {

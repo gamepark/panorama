@@ -3,8 +3,8 @@ import { MaterialType } from '@gamepark/panorama/material/MaterialType'
 import { Objective } from '@gamepark/panorama/material/Objective'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import { TokenDescription } from '@gamepark/react-game'
-import { centrepieceImages, objectiveImages, panoramaTileImages, startingTileImages, TileBack } from '../images/Images'
-import { centrepieceSizes, objectiveSize, panoramaTileSize, startingTileSize } from '../locators/TableLayout'
+import { centrepieceImages, objectiveImages, startingTileImages } from '../images/Images'
+import { centrepieceSizes, objectiveSize, startingTileSize } from '../locators/TableLayout'
 
 /**
  * Cardboard pieces, cut out along their die line: their images carry the shadow, so they are declared with the full
@@ -18,14 +18,6 @@ export class CentrepieceDescription extends TokenDescription<PlayerColor, Materi
   getSize(players: number) {
     return centrepieceSizes[players]
   }
-}
-
-export class PanoramaTileDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, number> {
-  width = panoramaTileSize.width
-  height = panoramaTileSize.height
-  transparency = true
-  images = panoramaTileImages
-  backImage = TileBack
 }
 
 export class StartingTileDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, PlayerColor> {

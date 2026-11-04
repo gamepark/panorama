@@ -24,14 +24,16 @@ export class PanoramaSetup extends MaterialGameSetup<PlayerColor, MaterialType, 
   }
 
   /**
-   * Stacks of 4 tiles, one per side of the Centrepiece. The unused tiles go back to the box.
+   * Stacks of 4 tiles, one per side of the Centrepiece, their top tile revealed. The unused tiles go back to the box.
    */
   setupStacks() {
     const stacks = getStackCount(this.players.length)
     const tiles = shuffle(panoramaTiles)
     for (let stack = 0; stack < stacks; stack++) {
       const ids = tiles.slice(stack * stackSize, (stack + 1) * stackSize)
-      this.material(MaterialType.PanoramaTile).createItems(ids.map((id) => ({ id, location: { type: LocationType.Stack, id: stack } })))
+      this.material(MaterialType.PanoramaTile).createItems(
+        ids.map((id, x) => ({ id, location: { type: LocationType.Stack, id: stack, x, rotation: x === stackSize - 1 || undefined } }))
+      )
     }
   }
 
@@ -65,6 +67,6 @@ export class PanoramaSetup extends MaterialGameSetup<PlayerColor, MaterialType, 
    */
   start() {
     const balloon = this.material(MaterialType.HotAirBalloon).location((location) => location.type === LocationType.StackSpace && location.id === 0)
-    this.startPlayerTurn(RuleId.TheFirstStep, balloon.getItem<PlayerColor>()!.id)
+    this.startPlayerTurn(RuleId.MoveBalloon, balloon.getItem<PlayerColor>()!.id)
   }
 }
