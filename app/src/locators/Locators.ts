@@ -7,11 +7,13 @@ import { objectivesLocator } from './ObjectivesLocator'
 import { panoramaLocator } from './PanoramaLocator'
 import { stackLocator } from './StackLocator'
 import { stackSpaceLocator } from './StackSpaceLocator'
+import { zoneScoresLocator } from './ZoneScoresLocator'
 
 export const Locators: Partial<Record<LocationType, Locator<PlayerColor, MaterialType, LocationType>>> = {
   [LocationType.Centrepiece]: centrepieceLocator,
   [LocationType.Stack]: stackLocator,
   [LocationType.StackSpace]: stackSpaceLocator,
   [LocationType.Panorama]: panoramaLocator,
-  [LocationType.Objectives]: objectivesLocator
+  [LocationType.Objectives]: objectivesLocator,
+  [LocationType.ZoneScores]: zoneScoresLocator
 }

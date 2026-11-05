@@ -14,5 +14,10 @@ export enum LocationType {
   /** A player's Panorama. x: column, 0 being the Starting Tile; y: vertical offset, in waves of the tile edges (positive is lower) */
   Panorama,
   /** The 3 Objective tokens of the game, visible to everyone */
-  Objectives
+  Objectives,
+  /**
+   * Drawn only, nothing goes there: at the end of the game, the Zones of terrain of a player's Panorama that score
+   * points, outlined, with their score. player: the owner of the Panorama
+   */
+  ZoneScores
 }

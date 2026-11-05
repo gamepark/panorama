@@ -9,8 +9,11 @@ import { panoramaTileContents, startingTileContent } from './TileContents'
 /** A tile of a Panorama: what is drawn on it, its column (the Starting Tile is 0) and its offset in waves */
 export type PlacedTile = { content: TileContent; x: number; y: number }
 
-/** Connected areas of one landscape across the Panorama: a Zone of terrain, or a zone of sky */
-export type Zone = { landscape: Landscape; tiles: number; animals: number; flowers: number }
+/**
+ * Connected areas of one landscape across the Panorama: a Zone of terrain, or a zone of sky. tileIndexes: the tiles it
+ * spreads over, as indexes of PanoramaView.tiles (sorted from left to right)
+ */
+export type Zone = { landscape: Landscape; tiles: number; tileIndexes: number[]; animals: number; flowers: number }
 
 /** A river, possibly crossing several tiles */
 export type River = { tiles: number; waterfalls: number; animals: number }
@@ -62,10 +65,12 @@ export class PanoramaView {
     })
     return roots.groups().map((areas) => {
       const landscape = areas[0] % 10
-      const tiles = areas.map((key) => this.tiles[Math.floor(key / 10)].content)
+      const tileIndexes = areas.map((key) => Math.floor(key / 10)).sort((a, b) => a - b)
+      const tiles = tileIndexes.map((index) => this.tiles[index].content)
       return {
         landscape,
         tiles: tiles.length,
+        tileIndexes,
         animals: tiles.reduce((sum, content) => sum + content.animals.filter((animal) => animal === landscape).length, 0),
         flowers: tiles.reduce((sum, content) => sum + content.flowers.filter((flower) => flower === landscape).length, 0)
       }
