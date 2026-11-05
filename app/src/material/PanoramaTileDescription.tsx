@@ -19,6 +19,7 @@ import { getPreviewTile } from './PreviewTile'
 export class PanoramaTileDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, number> {
   width = panoramaTileSize.width
   height = panoramaTileSize.height
+  borderRadius = 0.5
   transparency = true
   images = panoramaTileImages
   backImage = TileBack
