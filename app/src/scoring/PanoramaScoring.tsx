@@ -6,7 +6,7 @@ import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import { Scoring } from '@gamepark/panorama/Scoring'
 import { ScoringDescription } from '@gamepark/react-game'
 import { Trans } from 'react-i18next'
-import { objectiveImages } from '../images/Images'
+import { animalImages, flowerImages, objectiveImages } from '../images/Images'
 
 type ScoringKey = { terrain: Landscape } | { objective: Objective } | 'total'
 
@@ -36,7 +36,12 @@ export class PanoramaScoring implements ScoringDescription<PlayerColor, Panorama
 
   getScoringHeader(key: ScoringKey) {
     if (key === 'total') return <Trans i18nKey="scoring.total" />
-    if ('terrain' in key) return <Trans i18nKey={`scoring.terrain.${key.terrain}`} />
+    if ('terrain' in key)
+      return (
+        <span css={terrainCss}>
+          <img src={animalImages[key.terrain]} alt="" css={iconCss} />×<img src={flowerImages[key.terrain]} alt="" css={iconCss} />
+        </span>
+      )
     return <img src={objectiveImages[key.objective]} alt="" css={objectiveCss} />
   }
 
@@ -44,17 +49,36 @@ export class PanoramaScoring implements ScoringDescription<PlayerColor, Panorama
     const scoring = getScoring(rules)
     if (key === 'total') return <strong>{scoring.score(player)}</strong>
     if ('terrain' in key) return scoring.terrainScore(player, key.terrain)
+    const score = scoring.objectiveScore(player, key.objective)
     return (
       <>
-        {scoring.objectiveScore(player, key.objective)} <span css={valueCss}>({scoring.objectiveValue(player, key.objective)})</span>
+        <span css={score > 0 && boldCss}>{score}</span> <span css={valueCss}>({scoring.objectiveValue(player, key.objective)})</span>
       </>
     )
   }
 }
 
+/** The cells have a 0.6em padding: the negative margin keeps the tile large without making its row taller */
 const objectiveCss = css`
+  display: block;
   height: 2.5em;
-  vertical-align: middle;
+  margin: -0.45em 0;
+`
+
+const terrainCss = css`
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+`
+
+const iconCss = css`
+  height: 1.5em;
+  margin: -0.15em 0;
+`
+
+/** Not <strong>: the theme colours it */
+const boldCss = css`
+  font-weight: bold;
 `
 
 const valueCss = css`
