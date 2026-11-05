@@ -3,5 +3,15 @@
   "identities.1": "Blue",
   "identities.2": "Red",
   "identities.3": "Green",
-  "identities.4": "Yellow"
+  "identities.4": "Yellow",
+  "option.objectives": "Objectives",
+  "option.objectives.help": "The 3 Objectives of the game",
+  "option.objectives.1": "Random, one of each colour",
+  "option.objectives.2": "First game",
+  "option.objectives.3": "Scenario: Animal Festival",
+  "option.objectives.4": "Scenario: River Lover",
+  "option.objectives.5": "Scenario: The Long Way Home",
+  "option.objectives.6": "Scenario: Great View",
+  "option.objectives.7": "Scenario: Riverside Roam",
+  "option.objectives.8": "Scenario: Less Is More"
 }

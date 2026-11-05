@@ -1,1 +1,184 @@
-{}
+{
+  "header": {
+    "move-balloon": {
+      "you": "Advance your Hot-Air Balloon and place a Tile",
+      "player": "{player} advances their Hot-Air Balloon"
+    },
+    "move-balloon-last": {
+      "you": "Final turn: advance your Hot-Air Balloon and place a Tile",
+      "player": "{player}’s final turn: selecting a Tile"
+    },
+    "place-tile": {
+      "you": "Place the Tile in your Panorama",
+      "player": "{player} places a Tile in their Panorama"
+    },
+    "place-tile-last": {
+      "you": "Final turn: place the Tile in your Panorama",
+      "player": "{player}’s final turn: placing a Tile"
+    },
+    "validate-tile": {
+      "you": "<validate>Confirm</validate> the Tile’s position or <cancel>cancel</cancel>",
+      "player": "{player} places a Tile in their Panorama"
+    }
+  },
+  "scoring": {
+    "terrain": {
+      "2": "Mountains",
+      "3": "Forests",
+      "4": "Hills",
+      "5": "Fields"
+    },
+    "total": "Total"
+  },
+  "help": {
+    "tile": {
+      "title": "Panorama Tile",
+      "intro": "On their turn, the active player takes the top Tile of a pile and adds it to their <bold>Panorama</bold>.",
+      "top": "This Tile is on top of its pile: it can be taken.",
+      "covered": "This Tile is hidden under another Tile of the pile.",
+      "mine": "This Tile is part of your Panorama.",
+      "owner": "This Tile is part of {player}’s Panorama."
+    },
+    "starting-tile": {
+      "title": "Starting Tile",
+      "intro": "Each Panorama begins with the Starting Tile matching the colour of its Hot-Air Balloon. It splits the Panorama into <bold>2 sides</bold>, which some Objectives count."
+    },
+    "placement": {
+      "title": "Placing a Tile",
+      "side": "Add the Tile <bold>to the left or right</bold> of the Tiles in your Panorama.",
+      "between": "You may not place a Tile <bold>in between 2 Tiles</bold> already there, nor move Tiles you’ve already placed.",
+      "waves": "The wavy edges must <bold>fit together</bold> snugly. Tiles may be offset, as long as they fit together properly."
+    },
+    "zones": {
+      "title": "Terrain Zones",
+      "zone": "A <bold>Terrain Zone</bold> is any area of uninterrupted, orthogonally connected spaces with the same Terrain type. Diagonals do not count.",
+      "score": "At the end of the game, each Terrain Zone scores its number of <bold>Flowers</bold> multiplied by its number of <bold>Animals</bold>. Flowers with no Animal in their Zone score nothing."
+    },
+    "terrain": {
+      "2": "Mountain",
+      "3": "Forest",
+      "4": "Hills",
+      "5": "Fields"
+    },
+    "distribution": {
+      "title": "Distribution"
+    },
+    "objective": {
+      "1": {
+        "title": "Fewest clouds",
+        "rule": "Have the <bold>fewest Clouds</bold> in your Sky. Sky spaces don’t need to be connected!"
+      },
+      "2": {
+        "title": "Most clouds on one side",
+        "rule": "Have the <bold>most Clouds on one side</bold> of your Hot-Air Balloon (Starting Tile). Sky spaces don’t need to be connected!"
+      },
+      "3": {
+        "title": "Largest sky zone",
+        "rule": "Have the <bold>largest Sky Zone</bold>. Sky spaces must be connected for this one!"
+      },
+      "4": {
+        "title": "Most tiles on one side",
+        "rule": "Have the <bold>most Tiles on one side</bold> of your Hot-Air Balloon."
+      },
+      "5": {
+        "title": "Longest river",
+        "rule": "Have the <bold>longest River</bold>: the River that passes unbroken through the most Tiles."
+      },
+      "6": {
+        "title": "Most animals next to the same river",
+        "rule": "Have the <bold>most Animals next to the same River</bold>. Do not include Animals next to separate Rivers! Note: not all Animals are next to Rivers."
+      },
+      "7": {
+        "title": "Most separate rivers",
+        "rule": "Have the <bold>most separate Rivers</bold> that connect across at least 2 Tiles."
+      },
+      "8": {
+        "title": "Most waterfalls in the same river",
+        "rule": "Have the <bold>most Waterfalls in the same River</bold>. Do not include Waterfalls in separate Rivers!"
+      },
+      "9": {
+        "title": "Most crows",
+        "rule": "Have the <bold>most Crows</bold> in your Panorama. Their Terrain Zones do not need to be connected."
+      },
+      "10": {
+        "title": "Fewest tiles",
+        "rule": "Have the Panorama with the <bold>fewest Tiles</bold>."
+      },
+      "11": {
+        "title": "Most zones with an animal",
+        "rule": "Have the <bold>most Terrain Zones containing at least 1 Animal</bold>. A Terrain Zone with multiple Animals counts as 1."
+      },
+      "12": {
+        "title": "Fewest terrain zones",
+        "rule": "Have the <bold>fewest Terrain Zones</bold>. Sky Zones do not count!"
+      },
+      "scoring": {
+        "title": "Scoring",
+        "text": "At the end of the game, the Objective awards <bold>{points} points</bold> to the Panorama that best meets it. In the case of a draw, each tied player scores {points} points."
+      },
+      "current": "Right now",
+      "first-game": "This Objective has a star: it is one of the 3 Objectives for your first game."
+    },
+    "turn": {
+      "title": "Game turn",
+      "whose": "If your Hot-Air Balloon is at the same Location as the <bold>Sun token</bold>, it’s your turn:",
+      "choose": "<bold>Select a Tile</bold>: move your Hot-Air Balloon to a free Location (with no Sun or Hot-Air Balloon) and take the top Tile.",
+      "place": "<bold>Place the Tile</bold> to the left or right of your Panorama.",
+      "sun": "<bold>Advance the Sun</bold> clockwise to the next Hot-Air Balloon: its owner plays the next turn.",
+      "order": "The turn order therefore changes during the game: you may even play 2 or 3 turns in a row. But if you move your Hot-Air Balloon far ahead, you could end up waiting a long time before playing again."
+    },
+    "end": {
+      "title": "End of game",
+      "trigger": "When a player takes <bold>the last Tile on a Location</bold> and places it in their Panorama, they deflate their Hot-Air Balloon: their flight is over and they will not play any more turns.",
+      "moon": "The Sun token is flipped to its <bold>Moon</bold> side and advances to the next Hot-Air Balloon. The player whose Hot-Air Balloon is with the Moon takes their <bold>final turn</bold>, deflates their Hot-Air Balloon, then advances the Moon.",
+      "score": "When all Hot-Air Balloons are deflated, it’s time for <bold>scoring</bold>: Terrain Zones, then Objectives."
+    },
+    "balloon": {
+      "title": "Hot-Air Balloon",
+      "mine": "Your <bold>Hot-Air Balloon</bold>. It advances clockwise from pile to pile to select your Tiles.",
+      "player": "{player}’s <bold>Hot-Air Balloon</bold>. It advances clockwise from pile to pile to select their Tiles.",
+      "deflated": "This Hot-Air Balloon is deflated: its flight is over."
+    },
+    "sun": {
+      "title": "Sun token",
+      "intro": "The <bold>Sun</bold> shows whose turn it is: the player whose Hot-Air Balloon is at the same Location."
+    },
+    "moon": {
+      "title": "Moon token",
+      "intro": "The <bold>Moon</bold> shows that the end of the game has been triggered: the player whose Hot-Air Balloon is with it takes their final turn."
+    },
+    "centrepiece": {
+      "title": "Centrepiece",
+      "intro": "The <bold>{players}-player</bold> Centrepiece has {stacks} sides. In front of each side is a face-up pile of {size} Tiles.",
+      "stacks": {
+        "title": "The piles",
+        "top": "Only the <bold>top Tile</bold> of a pile is visible. It can be taken if neither a Hot-Air Balloon nor the Sun is at that pile.",
+        "sunrise": "The Sun token starts next to the pile in line with the <bold>Sunrise symbol</bold>. Hot-Air Balloons are placed at random, one per pile, starting from that one in clockwise direction.",
+        "end": "When a player takes <bold>the last Tile on a Location</bold>, the end of the game is triggered."
+      },
+      "left": "{tiles} Tiles left in {stacks} piles."
+    }
+  },
+  "tutorial": {
+    "welcome": "Welcome to the <strong>Panorama</strong> tutorial!",
+    "panorama": "Over the course of your Hot-Air Balloon journey, you will gradually build your <strong>Panorama</strong>, made of <strong>Panorama Tiles</strong>. You start with this <strong>Starting Tile</strong>.",
+    "move-balloon": "You are playing the blue Hot-Air Balloon <balloon/>. Advance your Hot-Air Balloon to here.",
+    "place-tile": "Now take the Tile in front of your Hot-Air Balloon and place it in your Panorama, <strong>to the left or right</strong> of your Starting Tile.<br/>Here, place it <strong>to the right</strong>, at the same height: it extends your River.",
+    "waves": "As you can see, the Tiles have <strong>wavy edges</strong>: Tiles can be placed at different heights, but they must <strong>fit together</strong> snugly.",
+    "sun": "Your turn is over: the Sun token <sun/> is now alone. It advances <strong>clockwise</strong> to the next Hot-Air Balloon: it’s that player’s turn.",
+    "gap": "Your opponent left an empty space: if you advance your Hot-Air Balloon to here, you will play <strong>twice in a row</strong>.",
+    "flowers": "At the end of the game, you will score <strong>Terrain points</strong>. Flowers <flowers/> earn you points, but only if they are in the same <strong>Terrain Zone</strong> as at least one Animal <animals/>. Each Animal scores <strong>1 point per Flower</strong> in its Terrain Zone.",
+    "zones": "A <strong>Terrain Zone</strong> is any area of uninterrupted Terrain of the same type, connected <strong>orthogonally</strong>. Diagonals do not count.",
+    "zones-example": "Forest A will score <strong>2 points</strong> (2 <fox/> × 1 <flower/>). Forest B will score no points (1 <fox/> × 0 <flower/>).",
+    "objectives": "In addition, 3 <strong>Objectives</strong> are in play. Each one awards <strong>10 points</strong> to the Panorama that best meets it. The Objectives for your first game are:",
+    "objective": {
+      "1": "have the <strong>fewest Clouds</strong>",
+      "5": "have the <strong>longest</strong> unbroken <strong>River</strong>",
+      "9": "have the <strong>most Crows</strong> <crow/>"
+    },
+    "objectives-tie": "In the case of a draw, both players score the 10 points.",
+    "help": "On Game Park, you can always <strong>click on any game element</strong> for a reminder of its rules: try clicking on an Objective, for example!",
+    "free-turn": "Now advance your Hot-Air Balloon and place the Tile however you like: try to make the most of your Terrains by gathering as many Animals <animals/> and Flowers <flowers/> as possible, while keeping an eye on the Objectives!",
+    "end": "The game continues like this until a pile of Tiles is empty: every other player then plays <strong>one final turn</strong>. The player with <strong>the most points</strong> wins.<br/>Enjoy the journey!"
+  }
+}
