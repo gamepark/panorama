@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LocationType } from '@gamepark/panorama/material/LocationType'
@@ -8,6 +7,7 @@ import { ItemContext, ItemMenuButton, TokenDescription } from '@gamepark/react-g
 import { MaterialItem } from '@gamepark/rules-api'
 import { panoramaTileImages, TileBack } from '../images/Images'
 import { panoramaTileSize } from '../locators/TableLayout'
+import { itemCancelButtonCss, itemValidateButtonCss } from '../theme'
 import { PanoramaTileHelp } from './help/TileHelps'
 import { getPreviewTile } from './PreviewTile'
 
@@ -30,13 +30,13 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
     if (item.location.type !== LocationType.Panorama) return
     const preview = getPreviewTile(context.rules)
     if (preview?.index !== context.index || preview.player !== context.player) return
-    const x = (item.location.x! < 0 ? -1 : 1) * (this.width / 2 + 1)
+    const x = (item.location.x! < 0 ? -1 : 1) * (this.width / 2 + 1.6)
     return (
       <>
-        <ItemMenuButton moves={preview.validate} x={x} y={-1.5} css={validateCss}>
+        <ItemMenuButton moves={preview.validate} x={x} y={-1.8} css={itemValidateButtonCss}>
           <FontAwesomeIcon icon={faCheck} />
         </ItemMenuButton>
-        <ItemMenuButton move={preview.cancel} options={{ local: true }} x={x} y={1.5} css={cancelCss}>
+        <ItemMenuButton move={preview.cancel} options={{ local: true }} x={x} y={1.8} css={itemCancelButtonCss}>
           <FontAwesomeIcon icon={faXmark} />
         </ItemMenuButton>
       </>
@@ -44,10 +44,3 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
   }
 }
 
-const validateCss = css`
-  color: #1f7a1f !important;
-`
-
-const cancelCss = css`
-  color: #c62828 !important;
-`
