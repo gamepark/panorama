@@ -1,6 +1,6 @@
 {
   "name": "@gamepark/panorama",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The rules of Panorama adapted for Game Park",
   "sideEffects": false,
   "type": "module",
