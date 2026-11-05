@@ -17,6 +17,7 @@
   "scripts": {
     "test": "vitest",
     "build": "tsc",
+    "arena": "node scripts/arena.mjs",
     "prepack": "yarn build",
     "publish": "yarn version ${0:-patch} && yarn npm publish ${OTP:+--otp $OTP} && git commit -am v$(node -p \"require('./package.json').version\") && git tag v$(node -p \"require('./package.json').version\") && git push --follow-tags"
   },

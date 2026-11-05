@@ -1,3 +1,4 @@
+import { PanoramaAI } from '@gamepark/panorama/ai/PanoramaAI'
 import { PanoramaOptionsSpecV2 } from '@gamepark/panorama/PanoramaOptions'
 import { PanoramaRules } from '@gamepark/panorama/PanoramaRules'
 import { PanoramaSetup } from '@gamepark/panorama/PanoramaSetup'
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
       Rules={PanoramaRules}
       optionsSpec={PanoramaOptionsSpecV2}
       GameSetup={PanoramaSetup}
+      ai={PanoramaAI}
       material={Material}
       locators={Locators}
       animations={gameAnimations}

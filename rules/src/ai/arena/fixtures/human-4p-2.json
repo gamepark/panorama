@@ -1,0 +1,550 @@
+{
+ "description": "Local game of 2026-11-05 at 4 players against bots with cut=1: the human is player 4",
+ "human": 4,
+ "game": {
+  "players": [
+   4,
+   2,
+   1,
+   3
+  ],
+  "items": {
+   "1": [
+    {
+     "id": 4,
+     "location": {
+      "type": 1
+     }
+    }
+   ],
+   "2": [
+    {
+     "id": 33,
+     "location": {
+      "type": 2,
+      "id": 0,
+      "x": 0
+     }
+    },
+    {
+     "id": 4,
+     "location": {
+      "type": 2,
+      "id": 0,
+      "x": 1
+     }
+    },
+    {
+     "id": 11,
+     "location": {
+      "type": 2,
+      "id": 0,
+      "x": 2
+     }
+    },
+    {
+     "id": 12,
+     "location": {
+      "type": 2,
+      "id": 0,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 32,
+     "location": {
+      "type": 2,
+      "id": 1,
+      "x": 0
+     }
+    },
+    {
+     "id": 3,
+     "location": {
+      "type": 2,
+      "id": 1,
+      "x": 1
+     }
+    },
+    {
+     "id": 18,
+     "location": {
+      "type": 2,
+      "id": 1,
+      "x": 2
+     }
+    },
+    {
+     "id": 1,
+     "location": {
+      "type": 2,
+      "id": 1,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 26,
+     "location": {
+      "type": 2,
+      "id": 2,
+      "x": 0
+     }
+    },
+    {
+     "id": 6,
+     "location": {
+      "type": 2,
+      "id": 2,
+      "x": 1
+     }
+    },
+    {
+     "id": 9,
+     "location": {
+      "type": 2,
+      "id": 2,
+      "x": 2
+     }
+    },
+    {
+     "id": 23,
+     "location": {
+      "type": 2,
+      "id": 2,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 15,
+     "location": {
+      "type": 2,
+      "id": 3,
+      "x": 0
+     }
+    },
+    {
+     "id": 36,
+     "location": {
+      "type": 2,
+      "id": 3,
+      "x": 1
+     }
+    },
+    {
+     "id": 14,
+     "location": {
+      "type": 2,
+      "id": 3,
+      "x": 2
+     }
+    },
+    {
+     "id": 8,
+     "location": {
+      "type": 2,
+      "id": 3,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 13,
+     "location": {
+      "type": 2,
+      "id": 4,
+      "x": 0
+     }
+    },
+    {
+     "id": 34,
+     "location": {
+      "type": 2,
+      "id": 4,
+      "x": 1
+     }
+    },
+    {
+     "id": 16,
+     "location": {
+      "type": 2,
+      "id": 4,
+      "x": 2
+     }
+    },
+    {
+     "id": 28,
+     "location": {
+      "type": 2,
+      "id": 4,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 22,
+     "location": {
+      "type": 2,
+      "id": 5,
+      "x": 0
+     }
+    },
+    {
+     "id": 24,
+     "location": {
+      "type": 2,
+      "id": 5,
+      "x": 1
+     }
+    },
+    {
+     "id": 21,
+     "location": {
+      "type": 2,
+      "id": 5,
+      "x": 2
+     }
+    },
+    {
+     "id": 2,
+     "location": {
+      "type": 2,
+      "id": 5,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 30,
+     "location": {
+      "type": 2,
+      "id": 6,
+      "x": 0
+     }
+    },
+    {
+     "id": 5,
+     "location": {
+      "type": 2,
+      "id": 6,
+      "x": 1
+     }
+    },
+    {
+     "id": 29,
+     "location": {
+      "type": 2,
+      "id": 6,
+      "x": 2
+     }
+    },
+    {
+     "id": 7,
+     "location": {
+      "type": 2,
+      "id": 6,
+      "x": 3,
+      "rotation": true
+     }
+    },
+    {
+     "id": 20,
+     "location": {
+      "type": 2,
+      "id": 7,
+      "x": 0
+     }
+    },
+    {
+     "id": 31,
+     "location": {
+      "type": 2,
+      "id": 7,
+      "x": 1
+     }
+    },
+    {
+     "id": 35,
+     "location": {
+      "type": 2,
+      "id": 7,
+      "x": 2
+     }
+    },
+    {
+     "id": 25,
+     "location": {
+      "type": 2,
+      "id": 7,
+      "x": 3,
+      "rotation": true
+     }
+    }
+   ],
+   "3": [
+    {
+     "id": 4,
+     "location": {
+      "type": 4,
+      "player": 4,
+      "x": 0,
+      "y": 0
+     }
+    },
+    {
+     "id": 2,
+     "location": {
+      "type": 4,
+      "player": 2,
+      "x": 0,
+      "y": 0
+     }
+    },
+    {
+     "id": 1,
+     "location": {
+      "type": 4,
+      "player": 1,
+      "x": 0,
+      "y": 0
+     }
+    },
+    {
+     "id": 3,
+     "location": {
+      "type": 4,
+      "player": 3,
+      "x": 0,
+      "y": 0
+     }
+    }
+   ],
+   "4": [
+    {
+     "id": 4,
+     "location": {
+      "type": 3,
+      "id": 0
+     }
+    },
+    {
+     "id": 2,
+     "location": {
+      "type": 3,
+      "id": 1
+     }
+    },
+    {
+     "id": 1,
+     "location": {
+      "type": 3,
+      "id": 2
+     }
+    },
+    {
+     "id": 3,
+     "location": {
+      "type": 3,
+      "id": 3
+     }
+    }
+   ],
+   "5": [
+    {
+     "location": {
+      "type": 3,
+      "id": 0
+     }
+    }
+   ],
+   "6": [
+    {
+     "id": 3,
+     "location": {
+      "type": 5,
+      "x": 0
+     }
+    },
+    {
+     "id": 5,
+     "location": {
+      "type": 5,
+      "x": 1
+     }
+    },
+    {
+     "id": 11,
+     "location": {
+      "type": 5,
+      "x": 2
+     }
+    }
+   ]
+  },
+  "rule": {
+   "id": 1,
+   "player": 4
+  },
+  "memory": {}
+ },
+ "tiles": [
+  {
+   "itemIndex": 19,
+   "player": 4,
+   "x": -1,
+   "y": -2
+  },
+  {
+   "itemIndex": 23,
+   "player": 2,
+   "x": -1,
+   "y": 0
+  },
+  {
+   "itemIndex": 27,
+   "player": 1,
+   "x": -1,
+   "y": 0
+  },
+  {
+   "itemIndex": 3,
+   "player": 3,
+   "x": -1,
+   "y": 0
+  },
+  {
+   "itemIndex": 31,
+   "player": 4,
+   "x": -2,
+   "y": -2
+  },
+  {
+   "itemIndex": 7,
+   "player": 2,
+   "x": -2,
+   "y": 0
+  },
+  {
+   "itemIndex": 15,
+   "player": 1,
+   "x": -2,
+   "y": 0
+  },
+  {
+   "itemIndex": 11,
+   "player": 4,
+   "x": -3,
+   "y": -2
+  },
+  {
+   "itemIndex": 18,
+   "player": 3,
+   "x": -2,
+   "y": -1
+  },
+  {
+   "itemIndex": 22,
+   "player": 2,
+   "x": 1,
+   "y": 0
+  },
+  {
+   "itemIndex": 26,
+   "player": 4,
+   "x": -4,
+   "y": -1
+  },
+  {
+   "itemIndex": 30,
+   "player": 1,
+   "x": 1,
+   "y": 1
+  },
+  {
+   "itemIndex": 2,
+   "player": 3,
+   "x": 1,
+   "y": 0
+  },
+  {
+   "itemIndex": 6,
+   "player": 2,
+   "x": -3,
+   "y": 0
+  },
+  {
+   "itemIndex": 10,
+   "player": 4,
+   "x": -5,
+   "y": -1
+  },
+  {
+   "itemIndex": 14,
+   "player": 1,
+   "x": -3,
+   "y": -1
+  },
+  {
+   "itemIndex": 21,
+   "player": 3,
+   "x": 2,
+   "y": -1
+  },
+  {
+   "itemIndex": 17,
+   "player": 2,
+   "x": -4,
+   "y": 0
+  },
+  {
+   "itemIndex": 25,
+   "player": 4,
+   "x": -6,
+   "y": -1
+  },
+  {
+   "itemIndex": 29,
+   "player": 1,
+   "x": 2,
+   "y": 0
+  },
+  {
+   "itemIndex": 9,
+   "player": 2,
+   "x": -5,
+   "y": 0
+  },
+  {
+   "itemIndex": 13,
+   "player": 3,
+   "x": -3,
+   "y": -1
+  },
+  {
+   "itemIndex": 20,
+   "player": 4,
+   "x": 1,
+   "y": 0
+  },
+  {
+   "itemIndex": 1,
+   "player": 1,
+   "x": -4,
+   "y": -1
+  },
+  {
+   "itemIndex": 24,
+   "player": 2,
+   "x": 2,
+   "y": 0
+  },
+  {
+   "itemIndex": 8,
+   "player": 3,
+   "x": 3,
+   "y": -1
+  }
+ ]
+}
