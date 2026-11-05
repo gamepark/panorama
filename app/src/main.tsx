@@ -9,7 +9,9 @@ import { gameAnimations } from './animations/GameAnimations'
 import { App } from './App'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
+import { theme } from './theme'
 import { PanoramaScoring } from './scoring/PanoramaScoring'
+import { PanoramaTutorial } from './tutorial/PanoramaTutorial'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -23,6 +25,8 @@ createRoot(document.getElementById('root')!).render(
       locators={Locators}
       animations={gameAnimations}
       scoring={new PanoramaScoring()}
+      tutorial={new PanoramaTutorial()}
+      theme={theme}
     >
       <App />
     </GameProvider>

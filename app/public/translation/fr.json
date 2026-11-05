@@ -158,5 +158,27 @@
       },
       "left": "{tiles} Tuiles restent dans {stacks} piles."
     }
+  },
+  "tutorial": {
+    "welcome": "Bienvenue dans le tutoriel de <strong>Panorama</strong> !",
+    "panorama": "Au fil de votre voyage en Montgolfière, vous constituez petit à petit votre <strong>Panorama</strong>, fait de <strong>Tuiles Panorama</strong>. Vous commencez avec cette <strong>Tuile de départ</strong>.",
+    "move-balloon": "Vous jouez la Montgolfière bleue <balloon/>. Avancez votre Montgolfière jusqu’ici.",
+    "place-tile": "À présent, prenez la Tuile devant laquelle se trouve votre Montgolfière, et placez-la dans votre Panorama, <strong>à gauche ou à droite</strong> de votre Tuile de départ.<br/>Ici, posez-la <strong>à droite</strong>, à la même hauteur : elle prolonge votre Rivière.",
+    "waves": "Comme vous pouvez le constater, les bords des Tuiles sont <strong>crénelés</strong> : les Tuiles peuvent être posées à différentes hauteurs, mais doivent <strong>s’emboîter</strong> parfaitement.",
+    "sun": "Votre tour est terminé : le jeton Soleil <sun/> se retrouve seul. Il avance <strong>en sens horaire</strong> jusqu’à la prochaine Montgolfière : c’est au tour de ce joueur.",
+    "gap": "Votre adversaire a laissé un espace vide : si vous avancez votre Montgolfière ici, vous jouerez <strong>2 fois d’affilée</strong>.",
+    "flowers": "À la fin de la partie, vous marquerez des <strong>points de Terrain</strong>. Les Fleurs <flowers/> vous rapportent des points, mais seulement si elles se trouvent dans la même <strong>Zone de Terrain</strong> qu’au moins un Animal <animals/>. Chaque Animal rapporte <strong>1 point par Fleur</strong> de sa Zone de Terrain.",
+    "zones": "Une <strong>Zone de Terrain</strong> est une zone ininterrompue de Terrains du même type, connectés ensemble de manière <strong>orthogonale</strong>. Les diagonales ne comptent pas.",
+    "zones-example": "La Forêt A rapportera <strong>2 points</strong> (2 <fox/> × 1 <flower/>). La Forêt B ne rapportera aucun point (1 <fox/> × 0 <flower/>).",
+    "objectives": "De plus, 3 <strong>Objectifs</strong> sont en jeu. Chacun rapporte <strong>10 points</strong> au Panorama qui y répond le mieux. Les Objectifs de votre première partie sont :",
+    "objective": {
+      "1": "avoir <strong>le moins de Nuages</strong>",
+      "5": "avoir <strong>la plus longue Rivière</strong> continue",
+      "9": "avoir <strong>le plus de Corbeaux</strong> <crow/>"
+    },
+    "objectives-tie": "En cas d’égalité, les 2 joueurs marquent les 10 points.",
+    "help": "Sur Game Park, vous pouvez toujours <strong>cliquer sur n’importe quel élément du jeu</strong> pour avoir un rappel des règles associées : essayez de cliquer sur un Objectif, par exemple !",
+    "free-turn": "Avancez maintenant votre Montgolfière, et placez la Tuile comme bon vous semble : essayez d’optimiser vos Terrains en réunissant un maximum d’Animaux <animals/> et de Fleurs <flowers/>, tout en gardant un œil sur les Objectifs !",
+    "end": "La partie se poursuit ainsi jusqu’à ce qu’une pile de Tuiles soit vide : chaque autre joueur joue alors <strong>un dernier tour</strong>. Le joueur avec <strong>le plus de points</strong> l’emporte.<br/>Bon voyage !"
   }
 }

@@ -1,0 +1,41 @@
+Code le tuto selon le script ci-dessous. Utiliser les 3 objectifs débutant.
+Corrige les textes et ajoute icones et gras en utilisant le pdf des règles comme référence.
+Met les focus et positions de popup pertinents
+
+
+Bienvenue dans le tutoriel de Panorama !
+
+Dans ce jeu, votre voyage en mongolfière vous permet de constituer petit à petit un Panorama, constitué de tuiles Paysage.
+Vous commencez avec cette tuile Paysage de départ.
+
+Vous jouez la mongolfière bleue. Avancez votre mongolfière ici.
+
+À présent, prenez la tuile devant laquelle vous venez de placer votre mongolfière, et placez la dans votre panorama, à droite ou à gauche de votre tuile de départ.
+(imposer une position verticale de qualité pour la tuile)
+
+Comme vous pouvez le constater, les bords des tuiles sont crénelées : les tuiles peuvent être posées à différentes hauteurs, mais doivent s'emboîter parfaitement.
+
+Après avoir joué, le pion soleil se retrouve seul : il avance, en sens horaire, jusqu'à la prochaine mongolfière. C'est au tour de ce joueur.
+
+Votre adversaire a laissé un espace vide : si vous avancez votre mongolfière ici, vous jouerez donc 2 fois d'affilée.
+
+À la fin de la partie, vous marquerez des points de Terrain : les Fleurs vous rapportent... (comme dans la règle)
+
+Une Zone de Terrain est une Zone ininterrompue...
+(avec l'illustration de la règle)
+
+De plus, il y a 3 objectifs en jeu. Chacun rapporte 10 points.
+Les objectifs pour votre première partie sont :
+- avoir le moins de nuages
+- avoir la plus longue rivière continue
+- avoir le plus de corbeaux
+<i>En cas d'égalité, les 2 joueurs gagnent les 10 points.</i>
+
+Sur Game Park, vous pouvez toujours cliquer sur n'importe quel élément du jeu pour avoir un rappel des règles associées : essayez de cliquer sur un objectif par exemple !
+
+Avancez maintenant votre mongolfière, et placez la tuile comme bon vous semble : essayer d'optimiser vos Terrains en mettant un maximum d'animaux et fleurs ensemble, tout en gardant un oeil sur les objectifs !
+(1 move mongolfière libre, 1 move tuile libre)
+
+La partie se poursuit ainsi jusqu'à ce qu'une pile de tuiles Paysage soit vide : chaque autre joueur joue alors un dernier tour.
+Le joueur avec le plus de points l'emporte.
+Bon voyage !

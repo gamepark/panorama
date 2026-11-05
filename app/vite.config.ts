@@ -50,6 +50,8 @@ export default defineConfig(({ mode }) => {
       port: 3000,
     },
     test: {
+      // The client reads the platform address as it loads: without one, it builds an invalid URL
+      env: { VITE_PLATFORM_URI: 'https://game-park.com' },
       server: {
         deps: {
           inline: [/@gamepark\//]
