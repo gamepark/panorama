@@ -1,9 +1,11 @@
 import { css } from '@emotion/react'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import { PanoramaRules } from '@gamepark/panorama/PanoramaRules'
-import { StyledPlayerPanel, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
+import { CounterProps, StyledPlayerPanel, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
 import { createPortal } from 'react-dom'
+import { objectiveImages } from '../images/Images'
 import { PanoramaLayout } from '../locators/PanoramaLayout'
+import { getScoring } from '../scoring/PanoramaScoring'
 import { panelEmGap, panelEmWidth, tableMargin } from '../locators/TableLayout'
 
 /**
@@ -34,6 +36,7 @@ export const PlayerPanels = () => {
             key={player.id}
             player={player}
             css={[panelPlace[anchor.place](top, left), playerPanelColors[player.id]]}
+            counters={objectiveCounters(rules, player.id)}
             activeRing
           />
         )
@@ -42,6 +45,31 @@ export const PlayerPanels = () => {
     root
   )
 }
+
+/** One counter per Objective of the game: how well the Panorama meets it, its badge inverted while the player leads it */
+const objectiveCounters = (rules: PanoramaRules, player: PlayerColor): CounterProps[] => {
+  const scoring = getScoring(rules)
+  return scoring.objectives.map((objective) => ({
+    image: objectiveImages[objective],
+    value: scoring.objectiveValue(player, objective),
+    imageCss: objectiveIconCss,
+    extraCss: scoring.leads(player, objective) && leadCss
+  }))
+}
+
+/** The badge has a 2.5em font: the token is drawn large, its negative margins keeping the badge thin */
+const objectiveIconCss = css`
+  height: 1.6em;
+  width: 1.6em;
+  margin: -0.25em 0;
+`
+
+/** The other badges are dark: the lead inverts them, which reads on the panels of every colour */
+const leadCss = css`
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+`
 
 const panelBase = css`
   position: absolute;

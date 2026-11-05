@@ -3,7 +3,8 @@ import { Landscape } from './material/Landscape'
 import { Objective } from './material/Objective'
 import { PanoramaView } from './material/PanoramaView'
 import { panoramaTileContents, startingTileContent } from './material/TileContents'
-import { objectiveValues } from './Scoring'
+import { PlayerColor } from './PlayerColor'
+import { objectiveValues, Scoring } from './Scoring'
 
 /** A Panorama: the Starting Tile in column 0, and the given tiles by number, column and offset */
 const panorama = (...tiles: [number, number, number][]) =>
@@ -55,5 +56,29 @@ describe('Panorama', () => {
     expect(objectiveValues[Objective.MostCloudsOneSide](view)).toBe(2)
     // Crows: tiles 5 and 36 have one each
     expect(objectiveValues[Objective.MostCrows](view)).toBe(2)
+  })
+})
+
+/** A Scoring of the given Panoramas, without the rules that build it */
+const scoring = (...panoramas: PanoramaView[]): Scoring =>
+  Object.assign(Object.create(Scoring.prototype), {
+    panoramas: new Map(panoramas.map((view, index) => [(index + 1) as PlayerColor, view])),
+    objectives: [Objective.FewestTiles, Objective.MostTilesOneSide]
+  })
+
+describe('Lead on an Objective', () => {
+  it('goes to no one while all the players are tied', () => {
+    const tied = scoring(panorama(), panorama())
+    expect(tied.leads(PlayerColor.Blue, Objective.FewestTiles)).toBe(false)
+    expect(tied.leads(PlayerColor.Red, Objective.MostTilesOneSide)).toBe(false)
+  })
+
+  it('goes to the best player, the lowest value when fewest wins', () => {
+    const game = scoring(panorama(), panorama([10, 1, 1]), panorama([5, -1, 0]))
+    expect(game.leads(PlayerColor.Blue, Objective.FewestTiles)).toBe(true)
+    expect(game.leads(PlayerColor.Red, Objective.FewestTiles)).toBe(false)
+    expect(game.leads(PlayerColor.Blue, Objective.MostTilesOneSide)).toBe(false)
+    expect(game.leads(PlayerColor.Red, Objective.MostTilesOneSide)).toBe(true)
+    expect(game.leads(PlayerColor.Green, Objective.MostTilesOneSide)).toBe(true)
   })
 })

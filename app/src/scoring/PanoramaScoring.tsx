@@ -10,9 +10,9 @@ import { animalImages, flowerImages, objectiveImages } from '../images/Images'
 
 type ScoringKey = { terrain: Landscape } | { objective: Objective } | 'total'
 
-/** The scoring is computed once per game state, for all the cells of the table */
+/** The scoring is computed once per game state, for all the cells of the table and the panels */
 const scorings = new WeakMap<object, Scoring>()
-const getScoring = (rules: PanoramaRules) => {
+export const getScoring = (rules: PanoramaRules) => {
   let scoring = scorings.get(rules.game)
   if (!scoring) {
     scoring = new Scoring(rules)

@@ -240,7 +240,7 @@ export const panelShare = (players: number) => {
 /** The player panels are drawn on the screen, in em, out of the table */
 export const panelEmWidth = 28
 /** Measured in the browser: update it if the content of the panels changes */
-export const panelEmHeight = 8.3
+export const panelEmHeight = 12
 export const panelEmGap = 1
 
 /** The screen around the table, in em: the header above it, and the panels on its right, against its edge, if any */

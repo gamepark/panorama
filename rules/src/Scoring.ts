@@ -52,10 +52,23 @@ export class Scoring {
     return objectiveValues[objective](this.panoramas.get(player)!)
   }
 
+  private objectiveValues(objective: Objective) {
+    return [...this.panoramas.keys()].map((other) => this.objectiveValue(other, objective))
+  }
+
+  private bestValue(objective: Objective) {
+    const values = this.objectiveValues(objective)
+    return lowestWins.includes(objective) ? Math.min(...values) : Math.max(...values)
+  }
+
   objectiveScore(player: PlayerColor, objective: Objective) {
-    const values = [...this.panoramas.keys()].map((other) => this.objectiveValue(other, objective))
-    const best = lowestWins.includes(objective) ? Math.min(...values) : Math.max(...values)
-    return this.objectiveValue(player, objective) === best ? objectivePoints : 0
+    return this.objectiveValue(player, objective) === this.bestValue(objective) ? objectivePoints : 0
+  }
+
+  /** Whether the player meets the Objective best, ahead of at least one other player (a tie between all is no lead) */
+  leads(player: PlayerColor, objective: Objective) {
+    const values = this.objectiveValues(objective)
+    return this.objectiveValue(player, objective) === this.bestValue(objective) && values.some((value) => value !== values[0])
   }
 
   score(player: PlayerColor) {
