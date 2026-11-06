@@ -18,6 +18,7 @@ import pymupdf
 from PIL import Image, ImageFilter
 
 sys.path.insert(0, os.path.dirname(__file__))
+import balloon3d  # noqa: E402
 import diecut  # noqa: E402
 
 DPI = 254  # 100 px per cm
@@ -32,7 +33,7 @@ PUNCHBOARD = {
 }
 # Punchboard page 1, top to bottom: the art of the 2 and 3 player pieces is printed rotated
 CENTREPIECES = [("centrepieces/Centrepiece4", 0), ("centrepieces/Centrepiece2", 90), ("centrepieces/Centrepiece3", 180)]
-BALLOONS = {"Blue": "bleu", "Red": "rouge", "Green": "vert", "Yellow": "jaune"}
+BALLOONS = ["Blue", "Red", "Green", "Yellow"]
 
 
 def find(folder, prefix):
@@ -84,14 +85,6 @@ def cut(page, pts, out, name, rotate=0, erode=0):
     save(im, out, name)
 
 
-def render_ai(path, width):
-    """Render an Illustrator file (PDF compatible), trimmed and resized to width pixels."""
-    pix = pymupdf.open(path, filetype="pdf")[0].get_pixmap(dpi=600, alpha=True)
-    im = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGBA")
-    im = im.crop(im.getchannel("A").getbbox())
-    return im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
-
-
 def tiles(src, out):
     front = find(src, "PAN_Tiles_Front_")
     base = os.path.join(front, os.path.basename(front).replace(" Folder", ""))
@@ -124,34 +117,16 @@ def punchboard(src, out):
             cut(pdf[index], pts, out, name, rotate=90 if name.startswith("objectives/") else 0, erode=2)
 
 
-CLOUD = np.array([226, 212, 184])  # cream of the cloud at the foot of the balloon art, same in every colour
-
-
-def paint_cloud(im):
-    """Paint the cream cloud of a balloon pawn in the colour of the wood, as the pawns of the rulebook photos.
-
-    The wood colour is the most common one around the cloud (its outline), dark outlines excluded. Each pixel is
-    shifted by a weight that fades from the cream, so the anti-aliased edges follow."""
-    a = np.array(im).astype(int)
-    rgb, opaque = a[..., :3], a[..., 3] > 250
-    distance = np.abs(rgb - CLOUD).max(-1)
-    cloud = (distance < 24) & opaque
-    around = np.array(Image.fromarray(cloud.astype(np.uint8) * 255).filter(ImageFilter.MaxFilter(9))) > 0
-    ring = rgb[around & ~cloud & opaque]
-    ring = ring[ring.max(-1) > 64] // 8 * 8
-    colours, counts = np.unique(ring, axis=0, return_counts=True)
-    wood = colours[counts.argmax()] + 4
-    weight = np.clip((64 - distance) / 40, 0, 1)[..., None]
-    a[..., :3] = np.clip(rgb + weight * (wood - CLOUD), 0, 255)
-    return Image.fromarray(a.astype(np.uint8))
-
-
 def wooden_pieces(src, out):
     rules = find(find(src, "PAN_Package_EN_"), "PAN_Rules_EN_")
     links = os.path.join(rules, "Links")
-    for color, file in BALLOONS.items():
-        art = render_ai(os.path.join(links, "Meeple3d-Montgolfiere%s.ai" % file), 220)
-        save(paint_cloud(art), out, "pawns/Balloon" + color)
+    # The Hot-Air Balloons: the flat art of their face, on a wooden pawn shaped like the ones rendered for the rulebook
+    # (all 4 alike: the blue one is the easiest to cut out)
+    common = os.path.join(find(src, "PAN_Toolbox+COMMON_"), "COMMON")
+    pawn = balloon3d.rulebook_pawn(os.path.join(links, "Meeple3d-Montgolfierebleu.ai"))
+    for color in BALLOONS:
+        art = Image.open(os.path.join(common, "Panorama_balloon_%s.png" % color.lower()))
+        save(balloon3d.extrude(art, *pawn, balloon3d.WOOD[color.lower()]), out, "pawns/Balloon" + color)
     # Both faces of the Sun/Moon token side by side: sun on the left, moon on the right
     pix = pymupdf.open(os.path.join(links, "Jeton-LuneSoleil_Flat.ai"), filetype="pdf")[0].get_pixmap(dpi=600, alpha=True)
     flat = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGBA")

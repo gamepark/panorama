@@ -28,7 +28,7 @@ export const centrepieceSizes: Record<number, { width: number; height: number }>
 }
 export const objectiveSize = { width: 4.08, height: 4.23 }
 /** Provisional: the real size of the wooden balloons is unknown (see app/src/images/README.md) */
-export const hotAirBalloonSize = { width: 2.68, height: 3.06 }
+export const hotAirBalloonSize = { width: 2.68, height: 3.11 }
 export const sunMoonDiameter = 2
 
 /** Physical sizes, without the shadows */

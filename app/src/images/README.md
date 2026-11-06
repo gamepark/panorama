@@ -11,23 +11,28 @@ every canvas by **20 px (0.2 cm) on each side**: add 0.4 cm to the physical widt
 | `start-tiles/` | `StartTileBlue`, `Red`, `Green`, `Yellow` | 2.98 × 11.14 cm |
 | `centrepieces/` | `Centrepiece2` (hexagon), `3` (heptagon), `4` (octagon) | ~6.3 cm across |
 | `objectives/` | one file per objective, named after it | 3.64 × 3.79 cm |
-| `pawns/` | `BalloonBlue`, `Red`, `Green`, `Yellow` (wood) | 2.2 × 2.58 cm, **provisional** |
+| `pawns/` | `BalloonBlue`, `Red`, `Green`, `Yellow` (wood) | 2.2 × 2.63 cm, **provisional** |
 | `tokens/` | `Sun`, `Moon`: front and back of the wooden token | 2 cm diameter, **opaque** |
 
 The balloon pawns use the **wood** shadow, which grows the canvas by **24 px** per side.
 `Sun` and `Moon` are opaque 200 × 200 squares without shadow, their corners filled with the rim colour: they
 are meant for a `RoundTokenDescription` (`diameter = 2`), whose border radius clips the disc and whose CSS
 shadow follows it. Front and back of one item, so turning the Sun into the Moon is a flip.
-The wooden pieces are not on the punchboard: they come from the rulebook links
-(`PAN_Package_EN_*\PAN_Rules_EN_*\Links`), `Meeple3d-Montgolfiere*.ai` and `Jeton-LuneSoleil_Flat.ai` (sun
-on the left half, moon on the right). The cream cloud at the foot of the balloon art is painted in the colour
-of the wood (`paint_cloud`), as on the pawns photographed in the rulebook. The real size of the balloon pawns is unknown: 2.2 cm wide is a guess
-until we see the physical game.
+The wooden pieces are not on the punchboard. The balloons come from the flat art of their face,
+`PAN_Toolbox+COMMON_*\COMMON\Panorama_balloon_<colour>.png`, put on a wooden pawn seen in 3/4 by
+`tools/images/balloon3d.py`. The pawn has the shape of the ones rendered for the rulebook
+(`PAN_Package_EN_*\PAN_Rules_EN_*\Links\Meeple3d-Montgolfierebleu.ai`, all 4 alike): a band of wood around the
+balloon, standing on a cloud. That render is seen slightly from the side and its balloon is slimmer: its cloud is
+straightened, then scaled with the height of the balloon. The face is painted in the main colour of the balloon
+(`WOOD`), extruded towards the upper right, the side darker and shaded by the direction it faces. The 4 pawns share
+one canvas, standing at the middle of its bottom. The Sun/Moon token comes from the rulebook links
+(`Jeton-LuneSoleil_Flat.ai`, sun on the left half, moon on the right). The real size of the balloon pawns is unknown: 2.2 cm wide (depth included) is a guess until we see
+the physical game.
 
 ## Recipe
 
 The publisher's Panorama folder (on Romain's machine: `kDrive\Licences\Scorpion Masqué\Panorama`) holds
-`PAN_Punchboard+Tiles_*` and `PAN_Package_EN_*`. Python needs PyMuPDF, Pillow and numpy (`py -3.13` on
+`PAN_Punchboard+Tiles_*` and `PAN_Package_EN_*`. Python needs PyMuPDF, Pillow, numpy and scipy (`py -3.13` on
 Romain's machine).
 
 1. `py -3.13 tools/images/cut.py <publisher-dir> <out-dir>` writes every piece as a PNG, already named and
