@@ -152,6 +152,9 @@ function onRadius(stack: number, players: number, radius: number, offset = 0): X
 
 export const stackPosition = (stack: number, players: number) => onRadius(stack, players, stackInnerRadius(players) + tileHeight / 2)
 
+/** The count of tiles left in a stack straddles its inner end and the side of the Centrepiece */
+export const stackCountPosition = (stack: number, players: number) => onRadius(stack, players, stackInnerRadius(players))
+
 export const balloonPosition = (stack: number, players: number) => onRadius(stack, players, balloonRadius(players))
 export const sunPosition = (stack: number, players: number) =>
   onRadius(stack, players, balloonRadius(players), sunOffset)
