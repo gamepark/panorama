@@ -20,7 +20,8 @@ are meant for a `RoundTokenDescription` (`diameter = 2`), whose border radius cl
 shadow follows it. Front and back of one item, so turning the Sun into the Moon is a flip.
 The wooden pieces are not on the punchboard: they come from the rulebook links
 (`PAN_Package_EN_*\PAN_Rules_EN_*\Links`), `Meeple3d-Montgolfiere*.ai` and `Jeton-LuneSoleil_Flat.ai` (sun
-on the left half, moon on the right). The real size of the balloon pawns is unknown: 2.2 cm wide is a guess
+on the left half, moon on the right). The cream cloud at the foot of the balloon art is painted in the colour
+of the wood (`paint_cloud`), as on the pawns photographed in the rulebook. The real size of the balloon pawns is unknown: 2.2 cm wide is a guess
 until we see the physical game.
 
 ## Recipe

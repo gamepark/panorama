@@ -124,11 +124,34 @@ def punchboard(src, out):
             cut(pdf[index], pts, out, name, rotate=90 if name.startswith("objectives/") else 0, erode=2)
 
 
+CLOUD = np.array([226, 212, 184])  # cream of the cloud at the foot of the balloon art, same in every colour
+
+
+def paint_cloud(im):
+    """Paint the cream cloud of a balloon pawn in the colour of the wood, as the pawns of the rulebook photos.
+
+    The wood colour is the most common one around the cloud (its outline), dark outlines excluded. Each pixel is
+    shifted by a weight that fades from the cream, so the anti-aliased edges follow."""
+    a = np.array(im).astype(int)
+    rgb, opaque = a[..., :3], a[..., 3] > 250
+    distance = np.abs(rgb - CLOUD).max(-1)
+    cloud = (distance < 24) & opaque
+    around = np.array(Image.fromarray(cloud.astype(np.uint8) * 255).filter(ImageFilter.MaxFilter(9))) > 0
+    ring = rgb[around & ~cloud & opaque]
+    ring = ring[ring.max(-1) > 64] // 8 * 8
+    colours, counts = np.unique(ring, axis=0, return_counts=True)
+    wood = colours[counts.argmax()] + 4
+    weight = np.clip((64 - distance) / 40, 0, 1)[..., None]
+    a[..., :3] = np.clip(rgb + weight * (wood - CLOUD), 0, 255)
+    return Image.fromarray(a.astype(np.uint8))
+
+
 def wooden_pieces(src, out):
     rules = find(find(src, "PAN_Package_EN_"), "PAN_Rules_EN_")
     links = os.path.join(rules, "Links")
     for color, file in BALLOONS.items():
-        save(render_ai(os.path.join(links, "Meeple3d-Montgolfiere%s.ai" % file), 220), out, "pawns/Balloon" + color)
+        art = render_ai(os.path.join(links, "Meeple3d-Montgolfiere%s.ai" % file), 220)
+        save(paint_cloud(art), out, "pawns/Balloon" + color)
     # Both faces of the Sun/Moon token side by side: sun on the left, moon on the right
     pix = pymupdf.open(os.path.join(links, "Jeton-LuneSoleil_Flat.ai"), filetype="pdf")[0].get_pixmap(dpi=600, alpha=True)
     flat = Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGBA")
