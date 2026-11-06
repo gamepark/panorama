@@ -34,7 +34,9 @@ import StartTileRed from './start-tiles/StartTileRed.webp'
 import StartTileYellow from './start-tiles/StartTileYellow.webp'
 import TileBack from './tiles/TileBack.webp'
 import Moon from './tokens/Moon.webp'
+import Moon3d from './tokens/Moon3d.webp'
 import Sun from './tokens/Sun.webp'
+import Sun3d from './tokens/Sun3d.webp'
 
 const tileImageFiles = import.meta.glob<string>('./tiles/Tile*.webp', { eager: true, import: 'default' })
 
@@ -45,7 +47,7 @@ export const panoramaTileImages: Record<number, string> = Object.fromEntries(
     .filter(([id]) => !isNaN(id))
 )
 
-export { Moon, Sun, TileBack }
+export { Moon, Moon3d, Sun, Sun3d, TileBack }
 
 export const centrepieceImages: Record<number, string> = { 2: Centrepiece2, 3: Centrepiece3, 4: Centrepiece4 }
 

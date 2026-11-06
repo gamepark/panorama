@@ -13,11 +13,14 @@ every canvas by **20 px (0.2 cm) on each side**: add 0.4 cm to the physical widt
 | `objectives/` | one file per objective, named after it | 3.64 × 3.79 cm |
 | `pawns/` | `BalloonBlue`, `Red`, `Green`, `Yellow` (wood) | 2.2 × 2.63 cm, **provisional** |
 | `tokens/` | `Sun`, `Moon`: front and back of the wooden token | 2 cm diameter, **opaque** |
+| `tokens/` | `Sun3d`, `Moon3d`: the same token seen in 3/4, its side under its face | 2 cm diameter, 0.6 cm of side |
 
 The balloon pawns use the **wood** shadow, which grows the canvas by **24 px** per side.
 `Sun` and `Moon` are opaque 200 × 200 squares without shadow, their corners filled with the rim colour: they
-are meant for a `RoundTokenDescription` (`diameter = 2`), whose border radius clips the disc and whose CSS
-shadow follows it. Front and back of one item, so turning the Sun into the Moon is a flip.
+are the flat faces, used as icons. On the table, the token is the thick wooden disc of the rulebook
+(`Jeton-Soleil.ai`, `Jeton-Lune.ai`): `Sun3d` and `Moon3d` are made from `Sun` and `Moon` by
+`py -3.13 tools/images/sunmoon3d.py <Sun.webp> <out.png>`, then `shadow.py --kind wood`. Its side hangs straight down
+under its face, in the projection of the balloons. Front and back of one item, so turning the Sun into the Moon is a flip.
 The wooden pieces are not on the punchboard. The balloons come from the flat art of their face,
 `PAN_Toolbox+COMMON_*\COMMON\Panorama_balloon_<colour>.png`, put on a wooden pawn seen in 3/4 by
 `tools/images/balloon3d.py`. The pawn has the shape of the ones rendered for the rulebook

@@ -30,6 +30,9 @@ export const objectiveSize = { width: 4.08, height: 4.23 }
 /** Provisional: the real size of the wooden balloons is unknown (see app/src/images/README.md) */
 export const hotAirBalloonSize = { width: 2.68, height: 3.11 }
 export const sunMoonDiameter = 2
+/** The visible side of the wooden Sun/Moon token, under its face (see tools/images/sunmoon3d.py) */
+export const sunMoonSide = 0.6
+export const sunMoonTokenSize = { width: sunMoonDiameter + 2 * woodShadow, height: sunMoonDiameter + sunMoonSide + 2 * woodShadow }
 
 /** Physical sizes, without the shadows */
 const tileWidth = panoramaTileSize.width - 2 * cardboardShadow
@@ -62,9 +65,13 @@ function stackInnerRadius(players: number) {
   return Math.max(centrepieceApothems[players] + gap / 2, (tileWidth / 2 + gap / 2) / Math.tan(Math.PI / sides))
 }
 
-/** The balloons stand on the axis of the stack, past its sky; the Sun stands beside them, just after clockwise */
+/**
+ * The balloons stand on the axis of the stack, past its sky; the Sun stands beside them, just after clockwise. The side
+ * of the Sun, under its face, and the depth of the balloons, on their right, come closer to each other than their faces:
+ * the Sun is moved away by the thickness of its side.
+ */
 const balloonRadius = (players: number) => stackInnerRadius(players) + tileHeight + gap + balloonHeight / 2
-const sunOffset = balloonWidth / 2 + gap + sunMoonDiameter / 2
+const sunOffset = balloonWidth / 2 + gap + sunMoonDiameter / 2 + sunMoonSide
 
 /** How far the star reaches from its middle: the top of the balloons, or the Sun beside them */
 const starRadius = (players: number) =>
