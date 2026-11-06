@@ -1,4 +1,4 @@
-import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LocationType } from '@gamepark/panorama/material/LocationType'
 import { MaterialType } from '@gamepark/panorama/material/MaterialType'
@@ -7,13 +7,14 @@ import { ItemContext, ItemMenuButton, TokenDescription } from '@gamepark/react-g
 import { MaterialItem } from '@gamepark/rules-api'
 import { panoramaTileImages, TileBack } from '../images/Images'
 import { panoramaTileSize } from '../locators/TableLayout'
-import { itemCancelButtonCss, itemValidateButtonCss } from '../theme'
+import { itemValidateButtonCss } from '../theme'
 import { PanoramaTileHelp } from './help/TileHelps'
+import { CancelPreviewButton } from './CancelPreviewButton'
 import { getPreviewTile } from './PreviewTile'
 
 /**
  * A Panorama Tile. Once laid in the Panorama, it stays a preview until the player validates it, or puts it back on its
- * stack. Both buttons stand on the outer side of the tile (left of the Starting Tile is x < 0), away from the rest of
+ * stack (which undoes the move of their balloon, if they moved it first). Both buttons stand on the outer side of the tile (left of the Starting Tile is x < 0), away from the rest of
  * the Panorama and from the header. The tile can also be dragged to another place meanwhile.
  */
 export class PanoramaTileDescription extends TokenDescription<PlayerColor, MaterialType, LocationType, number> {
@@ -36,11 +37,8 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
         <ItemMenuButton moves={preview.validate} x={x} y={-1.8} css={itemValidateButtonCss}>
           <FontAwesomeIcon icon={faCheck} />
         </ItemMenuButton>
-        <ItemMenuButton move={preview.cancel} options={{ local: true }} x={x} y={1.8} css={itemCancelButtonCss}>
-          <FontAwesomeIcon icon={faXmark} />
-        </ItemMenuButton>
+        <CancelPreviewButton x={x} y={1.8} />
       </>
     )
   }
 }
-
