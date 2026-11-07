@@ -1,7 +1,8 @@
 import { LocationType } from '@gamepark/panorama/material/LocationType'
 import { MaterialType } from '@gamepark/panorama/material/MaterialType'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
-import { MaterialContext, MaterialSoundConfig, SoundBatch, SoundKit, TokenDescription } from '@gamepark/react-game'
+import { Interpolation, Theme } from '@emotion/react'
+import { floatEffect, MaterialContext, MaterialSoundConfig, SoundBatch, SoundKit, TokenDescription } from '@gamepark/react-game'
 import { isMoveItem, ItemMove, MaterialItem } from '@gamepark/rules-api'
 import { hotAirBalloonImages, Moon3d, Sun3d } from '../images/Images'
 import BalloonDeflate from '../sounds/BalloonDeflate.wav'
@@ -21,6 +22,11 @@ export class HotAirBalloonDescription extends TokenDescription<PlayerColor, Mate
   images = hotAirBalloonImages
   soundKit = SoundKit.Wood
   help = HotAirBalloonHelp
+
+  /** A balloon that can be moved floats, on top of the shine */
+  getHighlightCss(itemId: PlayerColor, image?: string): Interpolation<Theme> {
+    return [super.getHighlightCss(itemId, image), floatEffect()]
+  }
 
   getDefaultSounds(move: ItemMove, batch: SoundBatch) {
     if (isMoveItem(move) && move.location.rotation) return [deflateSound]
