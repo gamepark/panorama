@@ -1,0 +1,22 @@
+{
+  "identities.1": {
+    "src": "/options/balloon-blue.webp",
+    "width": 268,
+    "height": 311
+  },
+  "identities.2": {
+    "src": "/options/balloon-red.webp",
+    "width": 268,
+    "height": 311
+  },
+  "identities.3": {
+    "src": "/options/balloon-green.webp",
+    "width": 268,
+    "height": 311
+  },
+  "identities.4": {
+    "src": "/options/balloon-yellow.webp",
+    "width": 268,
+    "height": 311
+  }
+}
