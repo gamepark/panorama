@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LocationType } from '@gamepark/panorama/material/LocationType'
@@ -27,6 +28,11 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
   menuAlwaysVisible = true
   help = PanoramaTileHelp
 
+  /** In a stack, each tile casts a stronger shadow on the one under it, so that the tiles left can be counted at a glance */
+  getItemExtraCss(item: MaterialItem<PlayerColor, LocationType>, context: ItemContext<PlayerColor, MaterialType, LocationType>) {
+    return item.location.type === LocationType.Stack && !context.isDragging ? stackTileCss : undefined
+  }
+
   getItemMenu(item: MaterialItem<PlayerColor, LocationType>, context: ItemContext<PlayerColor, MaterialType, LocationType>) {
     if (item.location.type !== LocationType.Panorama) return
     const preview = getPreviewTile(context.rules)
@@ -42,3 +48,13 @@ export class PanoramaTileDescription extends TokenDescription<PlayerColor, Mater
     )
   }
 }
+
+/**
+ * The tiles of a stack step up towards the top left (see StackLocator), so the shadow falls towards the bottom right.
+ * It is set on the faces, which hold the image: a filter on the item itself would flatten its 3D faces.
+ */
+const stackTileCss = css`
+  > * > * {
+    filter: drop-shadow(0.12em 0.12em 0.14em rgba(0, 0, 0, 0.95));
+  }
+`
