@@ -4,7 +4,7 @@ import { stackSize } from '@gamepark/panorama/material/PanoramaTile'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import { DropAreaDescription, ItemContext, LocationContext, Locator, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
-import { balloonPosition, hotAirBalloonSize, sunMoonSide, sunPosition } from './TableLayout'
+import { balloonPosition, hotAirBalloonSize, sunTokenPosition } from './TableLayout'
 
 /** Above the top tile of a full stack, below the items standing in the space */
 const spaceLevel = 0.05 * (stackSize + 1) + 0.05
@@ -43,9 +43,7 @@ class StackSpaceLocator extends Locator<PlayerColor, MaterialType, LocationType>
 
   getItemCoordinates(item: MaterialItem<PlayerColor, LocationType>, context: ItemContext<PlayerColor, MaterialType, LocationType>): Partial<Coordinates> {
     if (context.type === MaterialType.SunMoonToken) {
-      // The face of the token on its spot, its side hanging below
-      const { x, y } = sunPosition(item.location.id, context.rules.players.length)
-      return { x, y: y + sunMoonSide / 2, z: 0.5 }
+      return { ...sunTokenPosition(item.location.id, context.rules.players.length), z: 0.5 }
     }
     return { ...balloonPosition(item.location.id, context.rules.players.length), z: 0.5 }
   }

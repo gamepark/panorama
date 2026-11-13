@@ -163,6 +163,12 @@ export const balloonPosition = (stack: number, players: number) => onRadius(stac
 export const sunPosition = (stack: number, players: number) =>
   onRadius(stack, players, balloonRadius(players), sunOffset)
 
+/** Where the Sun/Moon token is drawn: the face of the token on the spot of the Sun, its side hanging below */
+export function sunTokenPosition(stack: number, players: number): XYCoordinates {
+  const { x, y } = sunPosition(stack, players)
+  return { x, y: y + sunMoonSide / 2 }
+}
+
 // ------------------------------------------------------------------ Panorama
 
 /**
