@@ -3,7 +3,7 @@ import { MaterialType } from '@gamepark/panorama/material/MaterialType'
 import { stackSize } from '@gamepark/panorama/material/PanoramaTile'
 import { PlayerColor } from '@gamepark/panorama/PlayerColor'
 import { DropAreaDescription, ItemContext, LocationContext, Locator, MaterialContext } from '@gamepark/react-game'
-import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
+import { Coordinates, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
 import { balloonPosition, hotAirBalloonSize, sunTokenPosition } from './TableLayout'
 
 /** Above the top tile of a full stack, below the items standing in the space */
@@ -22,6 +22,14 @@ class BalloonSpaceDescription extends DropAreaDescription<PlayerColor, MaterialT
    */
   getLocationTransform(location: Location<PlayerColor, LocationType>, context: LocationContext<PlayerColor, MaterialType, LocationType>) {
     return super.getLocationTransform(location, { ...context, canDrop: false })
+  }
+
+  /**
+   * The tutorial shows the space the balloon must fly to (in its focus): a click on it moves the balloon there. Outside
+   * the tutorial, the spaces are only drawn while the balloon is dragged.
+   */
+  canShortClick(move: MaterialMove<PlayerColor, MaterialType, LocationType>, location: Location<PlayerColor, LocationType>, context: MaterialContext<PlayerColor, MaterialType, LocationType>) {
+    return !!context.rules.game.tutorial && this.isMoveToLocation(move, location, context)
   }
 }
 
