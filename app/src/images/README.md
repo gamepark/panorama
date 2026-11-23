@@ -65,5 +65,9 @@ Run on the files of June–October 2026, this recipe reproduces the delivered im
 - **Cover** (`app/public/cover-1920.jpg` / `.webp`): the box illustration without logo,
   `PAN_Package_EN_*\PAN_Box_EN_*\Links\Visuel_Couv_03.png` (2953 × 4134), cropped to 16:9 from y = 1450 (full
   width, 1661 px high) and resized to 1920 × 1080; JPEG and WebP quality 85.
+  The 4 balloons (`Panorama_balloon_<colour>.png`, at the root of the publisher folder) are composited over it,
+  trimmed, at uneven sizes and heights as in the publisher's trailer (red 95 px high, green 150, blue 235,
+  yellow 290), all between y = 250 and y = 615 so that a site banner cropping the top and bottom keeps them whole.
+- **Background** (`background.webp`, used by the theme): the same illustration without the balloons.
 - Not delivered on purpose: the backs of the objectives, start tiles and centrepieces, which are never
   shown, and the score pad.

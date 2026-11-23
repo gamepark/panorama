@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import { defaultTheme, GameTheme } from '@gamepark/react-game'
+import background from '../images/background.webp'
 
 /**
  * Panorama's colours, picked off the rulebook: its pages are cream paper, and its boxes are framed in a band of autumn
@@ -193,7 +194,7 @@ export const theme: GameTheme = {
   root: {
     ...defaultTheme.root,
     background: {
-      image: '/cover-1920.jpg',
+      image: background,
       // Warmer than the default black: an autumn evening rather than the night
       overlay: 'rgba(42, 26, 14, 0.78)'
     }
